@@ -1,0 +1,6 @@
+version: '2.4'
+services:
+  mongodb:
+    image: mongo:4
+    ports:
+    - "127.0.0.1:27017:27017"

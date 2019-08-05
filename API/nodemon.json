@@ -1,0 +1,13 @@
+{
+  "execMap": {
+    "js": "node",
+    "json": "node"
+  },
+  "signal": "SIGTERM",
+  "watch": [
+    "src",
+    "package.json"
+  ],
+  "ignore": ["*.spec.js", "spec/*"],
+  "ext": "js"
+}
