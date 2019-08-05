@@ -45,33 +45,23 @@ async function collegienFindByIdAndUpdate(id, update) {
 function collegienFindAllCritere(queryparams) {
   logger.info('SERVICE collegienFindAll ou ByCriteria', queryparams);
 
-  // Nom
-  const critereNom = queryparams.nom;
+  // NomEleve
+  const critereNom = queryparams.nomEleve;
   // eslint-disable-next-line prefer-template
   const regexNom = new RegExp('^' + critereNom, 'i');
 
   // Prenom
-  const criterePrenom = queryparams.prenom;
+  const criterePrenom = queryparams.prenomEleve;
   // eslint-disable-next-line prefer-template
   const regexPrenom = new RegExp('^' + criterePrenom, 'i');
 
   // Ville
-  const critereVille = queryparams.ville;
+  const critereClasse = queryparams.classeEleve;
   // eslint-disable-next-line prefer-template
-  const regexVille = new RegExp('^' + critereVille, 'i');
-
-  // Parrain
-  const critereParrain = queryparams.trigrammeParrain;
-  // eslint-disable-next-line prefer-template
-  const regexParrain = new RegExp('^' + critereParrain, 'i');
-
-  // Parrain
-  const critereCouleur = queryparams.indiceCouleurSynthese;
-  // eslint-disable-next-line prefer-template
-  const regexCouleur = new RegExp('^' + critereCouleur, 'i');
+  const regexClasse = new RegExp('^' + critereClasse, 'i');
 
   return Collegien.find({
-    nom: regexNom, prenom: regexPrenom, ville: regexVille, trigrammeParrain: regexParrain, indiceCouleurSynthese: regexCouleur,
+    nomEleve: regexNom, prenomEleve: regexPrenom, classeEleve: regexClasse,
   }).sort({ nom: 1 });
 }
 

@@ -28,53 +28,50 @@ export class CollegeService {
 
 
   // POST
-  addCollegien(Collegien: Collegien): Observable<Collegien> {
-    console.log('Post du Service', Collegien);
-    return this.http.post<Collegien>(this.CollegienUrl, Collegien)
+  addCollegien(collegien: Collegien): Observable<Collegien> {
+    console.log('Post du Service', collegien);
+    return this.http.post<Collegien>(this.CollegienUrl, collegien)
       .pipe(
         tap((newCollegien: Collegien) => console.log(`Ajout d'un Collegien avec le nom ${newCollegien.nomEleve}`)),
-        catchError(this.handleError<Collegien>(`AddEolein ${Collegien}`))
+        catchError(this.handleError<Collegien>(`AddEolein ${collegien}`))
       );
   }
 
   // GETAll + Criteres
-  getAllCollegienCritere(Collegien: Collegien): Observable<Collegien[]> {
-    console.log('Get All Collegien Service', Collegien);
+  getAllCollegienCritere(collegien: Collegien): Observable<Collegien[]> {
+    console.log('Get All Collegien Service', collegien);
 
-    /* const params = {
-      nom: Collegien.nom,
-      prenom: Collegien.prenom,
-      ville: Collegien.ville,
-      trigrammeParrain: Collegien.trigrammeParrain,
-      indiceCouleurSynthese: Collegien.indiceCouleurSynthese
-    }; */
+    const params = {
+      nomEleve: collegien.nomEleve || '',
+      prenomEleve: collegien.prenomEleve || '',
+      classeEleve: collegien.classeEleve || '',
+    };
 
-    return this.http.get<Collegien[]>(`${this.CollegienUrl}`)
 
-/*     return this.http.get<Collegien[]>(`${this.CollegienUrl}`, { params })
- */      .pipe(
+     return this.http.get<Collegien[]>(`${this.CollegienUrl}`, { params })
+       .pipe(
         tap(() => console.log(`Collegien recupérés`)),
         catchError(this.handleError<Collegien[]>(`getAllCollegien`))
       );
   }
 
-  putCollegien(Collegien: Collegien): Observable<Collegien> {
-    console.log('Put du Service', Collegien._id);
-    const _id = Collegien._id;
-    return this.http.patch<Collegien>(`${this.CollegienUrl}/${_id}`, Collegien)
+  putCollegien(collegien: Collegien): Observable<Collegien> {
+    console.log('Put du Service', collegien._id);
+    const _id = collegien._id;
+    return this.http.patch<Collegien>(`${this.CollegienUrl}/${_id}`, collegien)
       .pipe(
         tap((newCollegienUpdate: Collegien) => console.log(`Update d'un Collegien ${newCollegienUpdate.nomEleve}`)),
-        catchError(this.handleError<Collegien>(`PutEolein ${Collegien}`))
+        catchError(this.handleError<Collegien>(`PutEolein ${collegien}`))
       );
   }
 
-  getByid(Collegien: Collegien): Observable<Collegien> {
-    console.log('dans le getbyId du Service', Collegien._id);
-    const _id = Collegien._id;
+  getByid(collegien: Collegien): Observable<Collegien> {
+    console.log('dans le getbyId du Service', collegien._id);
+    const _id = collegien._id;
     return this.http.get<Collegien>(`${this.CollegienUrl}/${_id}`)
       .pipe(
-        tap((CollegienByid: Collegien) => console.log(`GetByid d'un Collegien ${CollegienByid}`)),
-        catchError(this.handleError<Collegien>(`GetByidEolein ${Collegien}`))
+        tap((collegienByid: Collegien) => console.log(`GetByid d'un Collegien ${collegienByid}`)),
+        catchError(this.handleError<Collegien>(`GetByidEolein ${collegien}`))
       );
   }
 }

@@ -39,7 +39,9 @@ export class ListGlobalComponent implements OnInit, AfterViewInit {
   admin: any;
 
   //Formulaire
-  editForm: FormGroup;
+   public editForm: FormGroup =  new FormGroup({});
+   public updateForm: FormGroup =  new FormGroup({})
+
 
   //Date
   date: any;
@@ -63,7 +65,9 @@ export class ListGlobalComponent implements OnInit, AfterViewInit {
   ngOnInit() {
 
     //Appel de la methode edition pour recuperer les données du formulaire
-    this.edit();
+/*     this.edit();
+ */
+    this.update({})
 
     //Recuperation des données
     this.getAllCollegien();
@@ -101,7 +105,13 @@ export class ListGlobalComponent implements OnInit, AfterViewInit {
   //-----------------------Filtre-----------------------------------------
   //----------------------------------------------------------------------
 
-
+update(collegien : Collegien) {
+  this.updateForm = this.formBuilder.group({
+    nomEleve: '',
+    prenomEleve: '',
+    classEleve: '',
+  });
+}
 
 
 
@@ -132,12 +142,12 @@ export class ListGlobalComponent implements OnInit, AfterViewInit {
   //-------------------------------------------------------------------
 
   //Recuperation de toutes les données
-  getAllCollegien = () => {
-   /*  this.collegeService
-      .getCollegien()
+  getAllCollegien() {
+    this.collegeService
+      .getAllCollegienCritere(this.updateForm.value)
       .subscribe(res => {
-        this.dataSource.Collegien = res as Collegien[];
-      }) */
+        this.dataSource.data = res ;
+      })
   }
 
   //----------------------------------------------------------------------
@@ -145,20 +155,20 @@ export class ListGlobalComponent implements OnInit, AfterViewInit {
   //----------------------------------------------------------------------
 
   //Recuperation des données du formulaire
-  edit() {
+  edit(collegien : Collegien) {
     this.editForm = this.formBuilder.group({
-      nomEleve: '',
-      prenomEleve: '',
-      classeEleve: '',
-      mailEleve: '',
-      regimeEleve: '',
-      nomParent: '',
-      prenomParent: '',
-      qualiteParent: '',
-      username: '',
-      password: '',
-      passwordConfirme: '',
-      enable: '',
+      nomEleve: [collegien.nomEleve],
+      prenomEleve: [collegien.prenomEleve],
+      classeEleve: [collegien.classeEleve],
+      mailEleve: [collegien.mailEleve],
+      regimeEleve: [collegien.regimeEleve],
+      nomParent: [collegien.nomParent],
+      prenomParent: [collegien.prenomParent],
+      qualiteParent: [collegien.qualiteParent],
+      username: [collegien.username],
+      password: [collegien.password],
+      passwordConfirme: [collegien.passwordConfirme],
+      enable: [collegien.enable],
     });
   }
 

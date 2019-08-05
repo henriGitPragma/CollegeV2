@@ -52,14 +52,6 @@
               <br>
               <input  class="nomColor" id="nomEleve" formControlName="nomEleve" (click)="checkedNomEleve()"
                 (ngModelChange)="onChangeNomEleve($event)" [value]="element.nomEleve">
-
-              <button *ngIf="isCheckedNomEleve == true" mat-icon-button (click)="updateNomEleve(element)">
-                <mat-icon class="mat-20">cached</mat-icon>
-              </button>
-
-              <button *ngIf="isCheckedNomEleve == false" mat-icon-button>
-                <mat-icon class="mat-21">done_outline</mat-icon>
-              </button>
             </div>
             <!-------------------------------------------------->
 
@@ -70,14 +62,6 @@
               <br>
               <input class="prenomColor" id="prenomEleve" formControlName="prenomEleve" (click)="checkedPrenomEleve()"
                 (ngModelChange)="onChangePrenomEleve($event)" [value]="element.prenomEleve">
-
-              <button *ngIf="isCheckedPrenomEleve == true" mat-icon-button (click)="updatePrenomEleve(element)">
-                <mat-icon class="mat-20">cached</mat-icon>
-              </button>
-
-              <button *ngIf="isCheckedPrenomEleve == false" mat-icon-button>
-                <mat-icon class="mat-21">done_outline</mat-icon>
-              </button>
             </div>
             <!-------------------------------------------------->
 
@@ -87,14 +71,6 @@
               <br>
               <input class="classeColor" id="classeEleve" formControlName="classeEleve" (click)="checkedClasseEleve()"
                 (ngModelChange)="onChangeClasseEleve($event)" [value]="element.classeEleve ">
-
-              <button *ngIf="isCheckedClasseEleve == true" mat-icon-button (click)="updateClasseEleve(element)">
-                <mat-icon class="mat-20">cached</mat-icon>
-              </button>
-
-              <button *ngIf="isCheckedClasseEleve == false" mat-icon-button>
-                <mat-icon class="mat-21">done_outline</mat-icon>
-              </button>
             </div>
             <!-------------------------------------------------->
 
@@ -105,18 +81,6 @@
               <br>
               <input class="mailColor" id="mailEleve" formControlName="mailEleve" (click)="checkedMailEleve()"
                 [value]="element.mailEleve" (ngModelChange)="onChangeMailEleve($event)">
-
-              <button *ngIf="isCheckedMailEleve == true" mat-icon-button (click)="updateMailEleve(element)">
-                <mat-icon class="mat-20">cached</mat-icon>
-              </button>
-
-              <button *ngIf="isCheckedMailEleve == false" mat-icon-button>
-                <mat-icon class="mat-20">pan_tool</mat-icon>
-              </button>
-
-              <button *ngIf="isCheckedMailEleve == 'ok'" mat-icon-button>
-                <mat-icon class="mat-21">done_outline</mat-icon>
-              </button>
             </div>
             <!-------------------------------------------------->
 
@@ -127,14 +91,6 @@
               <br>
               <input class="regimeColor" id="regimeEleve" formControlName="regimeEleve" (click)="checkedRegimeEleve()"
                 (ngModelChange)="onChangeRegimeEleve($event)" [value]="element.regimeEleve ">
-
-              <button *ngIf="isCheckedRegimeEleve == true" mat-icon-button (click)="updateRegimeEleve(element)">
-                <mat-icon class="mat-20">cached</mat-icon>
-              </button>
-
-              <button *ngIf="isCheckedRegimeEleve == false" mat-icon-button>
-                <mat-icon class="mat-21">done_outline</mat-icon>
-              </button>
             </div>
             <!-------------------------------------------------->
           </fieldset>
@@ -148,14 +104,6 @@
               <br>
               <input (ngModelChange)="onChangeNomParent($event)" id="nomParent" class="nomParentColor"
                 formControlName="nomParent" (click)="checkedNomParent()" [value]="element.nomParent">
-
-              <button *ngIf="isCheckedNomParent == true" mat-icon-button (click)="updateNomParent(element)">
-                <mat-icon class="mat-20">cached</mat-icon>
-              </button>
-
-              <button *ngIf="isCheckedNomParent == false" mat-icon-button>
-                <mat-icon class="mat-21">done_outline</mat-icon>
-              </button>
             </div>
             <!------------------------------------------------->
 
@@ -166,14 +114,6 @@
               <br>
               <input (ngModelChange)="onChangePrenomParent($event)" id="prenomParent" class="prenomParentColor"
                 formControlName="prenomParent" (click)="checkedPrenomParent()" [value]="element.prenomParent">
-
-              <button *ngIf="isCheckedPrenomParent == true" mat-icon-button (click)="updatePrenomParent(element)">
-                <mat-icon class="mat-20">cached</mat-icon>
-              </button>
-
-              <button *ngIf="isCheckedPrenomParent == false" mat-icon-button>
-                <mat-icon class="mat-21">done_outline</mat-icon>
-              </button>
             </div>
             <!------------------------------------------------->
 
@@ -184,14 +124,6 @@
               <br>
               <input (ngModelChange)="onChangeQualiteParent($event)" id="qualiteParent" class="qualiteParentColor"
                 formControlName="qualiteParent" (click)="checkedQualiteParent()" [value]="element.qualiteParent">
-
-              <button *ngIf="isCheckedQualiteParent == true" mat-icon-button (click)="updateQualiteParent(element)">
-                <mat-icon class="mat-20">cached</mat-icon>
-              </button>
-
-              <button *ngIf="isCheckedQualiteParent == false" mat-icon-button>
-                <mat-icon class="mat-21">done_outline</mat-icon>
-              </button>
             </div>
             <!-------------------------------------------------->
 
@@ -221,14 +153,6 @@
               <br>
               <input (ngModelChange)="onChangeUsername($event)" id="username" class="usernameColor"
                 formControlName="username" (click)="checkedUsername()" [value]="element.username">
-
-              <button *ngIf="isCheckedUsername == true" mat-icon-button (click)="updateUsername(element)">
-                <mat-icon class="mat-20">cached</mat-icon>
-              </button>
-
-              <button *ngIf="isCheckedUsername == false" mat-icon-button>
-                <mat-icon class="mat-21">done_outline</mat-icon>
-              </button>
             </div>
             <!------------------------------------------------>
 
@@ -251,18 +175,6 @@
               <input type="password" (ngModelChange)="onChangePasswordConfirme($event)" id="passwordConfirme"
                 class="passwordConfirmeColor" formControlName="passwordConfirme" (click)="checkedPassword()"
                 [value]="element.passwordConfirme">
-
-              <button *ngIf="isCheckedPasswordConfirme == true" mat-icon-button (click)="updatePassword(element)">
-                <mat-icon class="mat-20">cached</mat-icon>
-              </button>
-
-              <button *ngIf="isCheckedPasswordConfirme == 'ok'" mat-icon-button>
-                <mat-icon class="mat-21">done_outline</mat-icon>
-              </button>
-
-              <button *ngIf="isCheckedPasswordConfirme == false" mat-icon-button>
-                <mat-icon class="mat-20">pan_tool</mat-icon>
-              </button>
             </div>
             <!---------------------------------------------------->
 
@@ -282,8 +194,6 @@
             </div>
             <!--------------------------------------------------->
 
-
-            
           </fieldset>
         </form>
       </div>
