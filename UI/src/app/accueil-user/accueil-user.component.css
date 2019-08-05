@@ -1,0 +1,95 @@
+table {
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color:white;
+  opacity: 0.8;
+}
+
+.entete{
+  font-size: 200%;
+  color:black;
+  margin-left: -50%;
+  opacity: 1;
+  font-weight: 600;
+}
+
+.entete1{
+  font-size: 120%;
+  color:black;
+  margin-left: -50%;
+  opacity: 1;
+  font-weight: 100;
+}
+
+
+.forme{
+  color:black;
+  font-size: 120%;
+}
+
+
+
+.align{
+  width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5%;
+}
+
+.taille{
+  font-size: 140%;
+  color: green;
+}
+
+.mat-raised-button{
+  margin-left: auto;
+  margin-right: auto;
+  color: rgb(1, 117, 192);
+  font-size: 20px;
+  width: 100%;
+  background-color: white;
+  line-height: 50px;
+}
+
+
+
+.mat-21{
+  color: green;
+}
+
+.dateSize{
+  font-size: 120%;
+  margin-right: 10%;
+}
+
+
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background :rgb(1, 117, 192);
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background :rgb(1, 117, 192);
+}
+
+.titredate {
+  text-align: center;
+  width: 40%;
+  margin-top:auto;
+  margin-left: auto;
+  color:rgb(1, 117, 192);
+  font-size: 150%;
+}
+
+
+
+
+
+
+
+

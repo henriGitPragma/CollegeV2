@@ -1,0 +1,116 @@
+<h1 class="titreListe">Créer des élèves</h1>
+<br>
+
+<div class="formTotal">
+  <mat-card>
+    <form [formGroup]="creationForm" #formDirective="ngForm" (submit)="createEnfant(formDirective)">
+
+
+      <!--     Nom de l'élève-->
+      <div class="example-container">
+
+        <fieldset class="misEnPage">
+          <legend>Elève</legend>
+
+          <mat-form-field>
+            <input matInput placeholder="Nom de l'élève" required formControlName="nomEleve">
+          </mat-form-field>
+          <br>
+          <!--     Prenom de l'élève-->
+          <mat-form-field>
+            <input matInput placeholder="Prenom de l'élève" required formControlName="prenomEleve">
+          </mat-form-field>
+          <br>
+          <br>
+          <!--     Classe de l'élève-->
+          <span>Classe* : </span>
+          <input type="text" matInput placeholder="Classe de l'eleve" class="search-input classeDetail height"
+            formControlName="classeEleve" name="place" required [matAutocomplete]="autoGroup">
+          <mat-autocomplete #autoGroup="matAutocomplete">
+            <mat-optgroup *ngFor="let group of searchOptions | async" [label]="group.classe">
+              <mat-option *ngFor="let dataClasseDetail of group.classeDetail" [value]="dataClasseDetail">
+                {{dataClasseDetail}}
+              </mat-option>
+            </mat-optgroup>
+          </mat-autocomplete>
+
+
+          <!--     Regime de l'élève-->
+          <mat-radio-group aria-label="Select an option" required formControlName="regimeEleve">
+            <span class="regime">Règime * :</span>
+            <mat-radio-button class="regimeDetail" value="Interne">Interne</mat-radio-button>
+            <mat-radio-button class="regimeDetail" value="Externe">Externe</mat-radio-button>
+          </mat-radio-group>
+
+        </fieldset>
+<br>
+        <fieldset class="misEnPage">
+          <legend>Parent</legend>
+
+          <!--     Nom du parent-->
+          <mat-form-field>
+            <input matInput placeholder="Nom du parent" required formControlName="nomParent">
+          </mat-form-field>
+          <br>
+
+          <!--     Prenom du parent-->
+          <mat-form-field>
+            <input matInput placeholder="Prenom du parent" required formControlName="prenomParent">
+          </mat-form-field>
+          <br>
+
+          <!--         Qualite du parent -->
+          <mat-radio-group aria-label="Select an option" required formControlName="qualiteParent">
+            <span class="qualite">Qualité du tuteur * :</span>
+            <br>
+            <br>
+            <mat-radio-button value="Père">Père</mat-radio-button>
+            <mat-radio-button value="Mère">Mère</mat-radio-button>
+            <mat-radio-button value="Frère">Frère</mat-radio-button>
+            <mat-radio-button value="Soeur">Soeur</mat-radio-button>
+            <mat-radio-button value="Grand - Mère">Grand - Mère</mat-radio-button>
+            <mat-radio-button value="Grand - Père">Grand - Père</mat-radio-button>
+          </mat-radio-group>
+
+          <mat-form-field>
+            <input type="email" matInput placeholder="Mail du Parent" required formControlName="mailEleve">
+          </mat-form-field>
+
+        </fieldset>
+        <div class="champ">* Champs Obligatoires</div>
+
+        <fieldset class="misEnPage">
+          <legend>Authentification</legend>
+
+          <mat-form-field>
+            <input type="text" matInput placeholder="Login : " required formControlName="username">
+          </mat-form-field>
+
+          <!--     Mot de passe -->
+          <mat-form-field>
+            <input type="password" matInput placeholder="Mot de passe" required formControlName="password">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input type="password" matInput placeholder="Confirmation du Mot de passe" required
+              formControlName="passwordConfirme">
+          </mat-form-field>
+
+          <mat-radio-group required aria-label="Select an option" formControlName="enable">
+            <mat-radio-button  value="active">Compte Activé</mat-radio-button>
+            <mat-radio-button value="desactive">Compte Desactivé</mat-radio-button>
+          </mat-radio-group>
+
+        </fieldset>
+        <br>
+        <div class="echec">
+          {{mdp}}
+        </div>
+        <br>
+        <button mat-raised-button type="submit" [disabled]="creationForm.invalid">Valider</button>
+
+        <button mat-raised-button [routerLink]="['/global']">Retour à la liste</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

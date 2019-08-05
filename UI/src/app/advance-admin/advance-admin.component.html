@@ -1,0 +1,18 @@
+<div>
+  Suppression de l'eleve
+  <button mat-icon-button color="warn" (click)="delete()">
+    <mat-icon class="mat-18">delete_forever</mat-icon>
+  </button>
+</div>
+
+<br>
+
+<div>
+  Envoyer un mail
+  <button mat-icon-button (click)="sendMail()">
+    <mat-icon class="mat-19">alternate_email</mat-icon>
+  </button>
+  <div>
+    {{isSendMail}}
+  </div>
+</div>

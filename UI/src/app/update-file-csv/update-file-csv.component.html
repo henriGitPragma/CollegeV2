@@ -1,0 +1,9 @@
+
+ <p>
+    <button mat-raised-button type="button" (click)="file.click()">
+      {{ btnText }}
+    </button>
+    <input type="file" name="file" #file [hidden]="true"  (change)="getFiles($event)"/>
+    <button mat-raised-button [routerLink]="['/global']">Retour à la liste</button>
+
+  </p>

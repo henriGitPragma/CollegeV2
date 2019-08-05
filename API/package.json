@@ -1,6 +1,6 @@
 {
   "name": "College",
-  "version": "0.0.0",
+  "version": "2.0.0",
   "description": "Outil pour automatiser un College",
   "main": "src/index.js",
   "scripts": {

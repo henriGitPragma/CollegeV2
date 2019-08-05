@@ -1,0 +1,28 @@
+.miseEnPage {
+  width: 40%;
+  margin: auto;
+  margin-top: 10%;
+  text-align: center;
+  background-color:white;
+  opacity: 0.8;
+  font-size: 100%;
+}
+
+mat-form-field{
+  width: 40%;
+}
+
+
+.echec {
+  color: crimson;
+  margin-top: 5%
+}
+
+.mat-raised-button {
+  width: 40%;
+  color: white;
+  line-height: 50px;
+  background-color: black;
+  opacity: 1;
+}
+

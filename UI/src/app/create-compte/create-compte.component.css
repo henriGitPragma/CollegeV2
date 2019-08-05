@@ -1,0 +1,64 @@
+table {
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color:white;
+  opacity: 0.8;
+  }
+  
+  .legend{
+    font-size:200%;
+    color:#11516c;
+  }
+
+  .misEnPage3{
+    width: 25%;
+    border: 2px solid black;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .forme{
+    color:black;
+    font-size: 120%
+  }
+
+  .mat-20{
+    color: red;
+  }
+  
+  .mat-21{
+    color: green;
+  }
+
+  .alreadyUse{
+      color: red;
+  }
+
+  .sendMail{
+    font-size: 150%;
+    color: green;
+  }
+
+  .entete{
+    font-size: 150%;
+    color:black;
+    margin-left: -50%;
+    opacity: 1;
+    font-weight: 600;
+  }
+
+  .entete1{
+    font-size: 120%;
+    color:black;
+    margin-left: -50%;
+    opacity: 1;
+    font-weight: 100;
+  }
+
+  
+
+  tr.example-detail-row {
+    height: 0;
+  }
+

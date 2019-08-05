@@ -10,7 +10,7 @@ const defaults = {
     // https://www.npmjs.com/package/cors#configuration-options
   },
   mongo: {
-    uri: 'mongodb://localhost:27017/meteole',
+    uri: 'mongodb://localhost:27017/college',
     opts: {
       autoReconnect: true,
       reconnectTries: 10,

@@ -1,0 +1,74 @@
+<br>
+<!-- <div id="date" class="titredate"></div> -->
+<!-- <button mat-icon-button >&times;</button> -->
+<br>
+
+<!-- Table pour afficher les données -->
+<table mat-table [dataSource]="dataSource"  multiTemplateDataRows class="mat-elevation-z8">
+
+
+                        <!--   Les trois entetes -->
+  <ng-container matColumnDef="nomEleve">
+    <th mat-header-cell class="entete"  *matHeaderCellDef > Nom </th>
+    <td mat-cell class="entete1" *matCellDef="let element"> {{element.nomEleve}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="prenomEleve">
+    <th mat-header-cell class="entete"  *matHeaderCellDef > Prenom </th>
+    <td mat-cell class="entete1" *matCellDef="let element"> {{element.prenomEleve}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="classeEleve">
+      <th mat-header-cell class="entete" *matHeaderCellDef > Classe </th>
+      <td mat-cell class="entete1" *matCellDef="let element"> {{element.classeEleve}} </td>
+    </ng-container>
+
+              <!-- Les données de la base -->
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+      <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+
+       <!--  Debut fieldset -->
+        <fieldset class="align">
+
+        <!--   Arrivée -->
+          <div *ngIf="isConnect == 0 && isConectOK == true">
+            <button mat-raised-button (click)="updateDateArrive(element._id)">Arrivée</button>
+          </div>
+
+          <span *ngIf="isArr ==  true " class="dateSize">
+            <span class="forme"> Arrivée : </span>
+            <mat-icon class="mat-21">done_outline</mat-icon>
+          </span>
+        <!-- --------------------------- -->
+
+
+         <!--  Départ -->
+          <div *ngIf="isConnect == 1 && isConectOK == true">
+            <button mat-raised-button (click)="updateDateDepart(element._id)">Départ</button>
+          </div>
+
+          <span *ngIf="isDep == true " class="dateSize">
+            <span class="forme"> Départ : </span>
+            <mat-icon class="mat-21">done_outline</mat-icon>
+          </span>
+          <!-- --------------------------- -->
+
+        </fieldset>
+            <!-- Fin Fieldset -->
+      </div>
+    </td>
+  </ng-container>
+<!------------------------------->
+
+<!-- Permet de faire l'animation -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row"
+    [class.example-expanded-row]="expandedElement === element"
+    (click)="expandedElement = expandedElement === element ? null : element" (click)=" isConnection(element._id)">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+<!------------------------------->
+
+</table>
