@@ -38,13 +38,13 @@ export class CollegeService {
   }
 
   // GETAll + Criteres
-  getAllCollegienCritere(collegien: Collegien): Observable<Collegien[]> {
+  getAllCollegienCritere(collegien: Collegien, columnsOnly): Observable<Collegien[]> {
     console.log('Get All Collegien Service', collegien);
 
     const params = {
       nomEleve: collegien.nomEleve || '',
       prenomEleve: collegien.prenomEleve || '',
-      classeEleve: collegien.classeEleve || '',
+      columnsOnly,
     };
 
 

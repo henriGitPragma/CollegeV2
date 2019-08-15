@@ -1,144 +1,83 @@
 const { Schema } = require('mongoose');
 
 module.exports = new Schema({
-  trigramme: {
+  nomEleve: {
     type: String,
-    uppercase: true,
+    titlecase: true,
   },
-  nom: {
+  prenomEleve: {
+    type: String,
+    trim: true,
+    titlecase: true,
+  },
+  mailEleve: {
     type: String,
     trim: true,
     lowercase: true,
   },
-  prenom: {
+  classeEleve: {
     type: String,
     trim: true,
     lowercase: true,
+
   },
-  email: {
+  regimeEleve:  {
     type: String,
     trim: true,
+    titlecase: true,
+
   },
-  mobile: String,
-  dateEntree: {
+
+  h_Arr: {
     type: Date,
     // `Date.now()` returns the current unix timestamp as a number
     default: new Date(),
   },
-  position: Number,
-  coefficient: Number,
-  salaire: Number,
-  libPoste: {
+  h_Dep: {
+    type: Date,
+    // `Date.now()` returns the current unix timestamp as a number
+    default: new Date(),
+  },
+  nomParent: {
     type: String,
     trim: true,
+    lowercase: true,
   },
   domaine: {
     type: String,
     trim: true,
     lowercase: true,
   },
-  ville: {
+  prenomParent: {
     type: String,
     trim: true,
     lowercase: true,
   },
-  isMission: {
-    type: Boolean,
-    default: false,
-  },
-  libMission: {
-    type: String,
-    trim: true,
-  },
-  nomCommercial: {
+  qualiteParent: {
     type: String,
     trim: true,
     lowercase: true,
   },
-  trigrammeParrain: {
+  username: {
     type: String,
     trim: true,
-    uppercase: true,
-  },
-  dateMeteole: {
-    type: Date,
-    // `Date.now()` returns the current unix timestamp as a number
-    default: Date.now,
-  },
-  isAccompagnementRh: {
-    type: Boolean,
-    default: false,
-  },
-  isReconnaissance: {
-    type: Boolean,
-    default: false,
-  },
-  isAppartenance: {
-    type: Boolean,
-    default: false,
-  },
-  isProjetProfessionnel: {
-    type: Boolean,
-    default: false,
-  },
-  indiceCouleurSynthese: {
-    type: String,
-    default: '#ffffff',
-  },
-  situation: {
-    type: String,
-    trim: true,
-    lowercase: true,
-  },
-  planActionParrain: {
-    type: String,
-    trim: true,
-  },
-  decisionSeance: {
-    type: String,
-    trim: true,
-  },
-  isParrain: {
-    type: Boolean,
-    default: false,
-  },
-  isParticipationMeteole: {
-    type: Boolean,
-    default: false,
-  },
-  isArchive: {
-    type: Boolean,
-    default: false,
-  },
-  nomRole: {
-    type: String,
-    trim: true,
-    lowercase: true,
-  },
-  tauxCollecte: {
-    type: Number,
-    default: 0,
   },
   password: {
     type: String,
     trim: true,
   },
-  isSpeakAboutMe: {
-    type: Boolean,
-    default: false,
-  },
-  login: {
+  passwordConfirme: {
     type: String,
     trim: true,
   },
-  status: {
-    type: String,
-    trim: true,
-    lowercase: true,
-  },
-  isValidateMeteole: {
+  enable: {
     type: Boolean,
-    default: false,
+    default: true,
+  },
+  createdOn: {
+    type: Date,
+    // `Date.now()` returns the current unix timestamp as a number
+    default: new Date(),
   },
 
 }, { strict: false });

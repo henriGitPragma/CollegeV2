@@ -16,6 +16,6 @@ export interface Collegien {
     username?: string;
     password?: string;
     passwordConfirme?: string;
-    enable?: string,
+    enable?: boolean,
     createdOn?: string;
 }

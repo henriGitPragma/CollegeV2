@@ -1,0 +1,32 @@
+/* la zone titre */
+.dlg-title {
+    background-color: cadetblue;
+    color: white;
+    text-align: center;
+    font-size: 110%;
+    font-weight: bold;
+    padding: 10px;
+}
+
+/* la zone message */
+.dlg-msg {
+    padding-top: 20px;
+    color: black;
+    margin-bottom: 40px;
+}
+
+/* la zone des boutons */
+.dlg-btns {
+    padding-top: 20px;
+    border-style: solid;
+    border-width: 2px 0px 0px 0px;  /* hdbg */
+    border-color: cadetblue;
+}
+
+/* le bouton ok */
+.dlg-btnok {
+    background-color: rgb(68, 160, 68);
+    color: white;
+    width: 40%;
+    float: right;
+}

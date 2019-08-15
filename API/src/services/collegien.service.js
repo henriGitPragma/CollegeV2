@@ -10,25 +10,26 @@ const logger = pino({
   prettyPrint: true,
 });
 
+// **************************************************************************************************
 async function collegienSave(reqdata) {
   logger.info('SERVICE collegienSave', reqdata);
   const collegien = await new Collegien(reqdata);
   return collegien.save();
 }
 
-
+// **************************************************************************************************
 function collegienFindById(id) {
   logger.info('SERVICE collegienFindById');
   return Collegien.findById(id);
 }
 
-
+// **************************************************************************************************
 function collegienFindByIdAndDelete(id) {
   logger.info('SERVICE collegienFindByIdAndDelete');
   return Collegien.findByIdAndDelete(id);
 }
 
-
+// **************************************************************************************************
 async function collegienFindByIdAndUpdate(id, update) {
   logger.info('SERVICE collegienFindByIdAndUpdate');
 
@@ -41,7 +42,7 @@ async function collegienFindByIdAndUpdate(id, update) {
   return saveNewUpdate.save();
 }
 
-
+// **************************************************************************************************
 function collegienFindAllCritere(queryparams) {
   logger.info('SERVICE collegienFindAll ou ByCriteria', queryparams);
 
@@ -50,19 +51,21 @@ function collegienFindAllCritere(queryparams) {
   // eslint-disable-next-line prefer-template
   const regexNom = new RegExp('^' + critereNom, 'i');
 
-  // Prenom
+  // PrenomEleve
   const criterePrenom = queryparams.prenomEleve;
   // eslint-disable-next-line prefer-template
   const regexPrenom = new RegExp('^' + criterePrenom, 'i');
 
-  // Ville
-  const critereClasse = queryparams.classeEleve;
-  // eslint-disable-next-line prefer-template
-  const regexClasse = new RegExp('^' + critereClasse, 'i');
-
   return Collegien.find({
-    nomEleve: regexNom, prenomEleve: regexPrenom, classeEleve: regexClasse,
-  }).sort({ nom: 1 });
+    nomEleve: regexNom, prenomEleve: regexPrenom,
+  }).sort({ nomEleve: 1 });
+}
+
+// **************************************************************************************************
+function collegienFindColumnsOnly(queryparams) {
+  logger.info('SERVICE CollumOnly', queryparams);
+
+  return Eolien.find().select(['nom', 'prenom']).sort({ nom: 1 });
 }
 
 
@@ -72,4 +75,5 @@ module.exports = {
   collegienFindByIdAndDelete,
   collegienFindByIdAndUpdate,
   collegienFindAllCritere,
+  collegienFindColumnsOnly,
 };
