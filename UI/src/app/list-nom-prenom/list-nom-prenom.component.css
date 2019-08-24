@@ -1,0 +1,32 @@
+
+
+
+mat-selection-list {
+    max-height: 650px;
+    overflow: auto;
+  }
+
+.liste {
+    color: black;
+    overflow-y:auto;
+}
+
+.liste:hover, .liste:active {
+    background-color: #5c9cd1;
+    cursor: pointer;
+}
+
+.toolbar {
+    height: 20%
+}
+
+.icons {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-color {
+    color: #FFE180;
+   }
+
+

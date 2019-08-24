@@ -1,0 +1,26 @@
+.background {
+    background-image: url();
+    height:100%; 
+    background-size:cover;
+    width:100%;
+    background-position:50% 50%;
+    bottom: 0;
+    position: fixed;
+    opacity: 0.3 ;
+}
+
+.container {
+    width: 20%;
+    margin: auto;
+    margin-top: 10%;
+    text-align: center;
+    background-color:rgb(25, 0, 255);
+    opacity: 0.9;
+    font-size: 100%;
+  }
+
+   .iconGoogle {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+  }

@@ -10,6 +10,10 @@ const mongoose = require('mongoose');
 const pinoHttp = require('pino-http');
 const swagger = require('swagger-ui-express');
 
+const passport = require('passport'); // npm i passport --save-dev
+const LocalStrategy = require('passport-local').Strategy; // npm i passport-local --save-dev
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy; // npm i passport-google-oauth --save-dev
+
 const apiDoc = require('./api/api');
 const config = require('./config');
 const registerSchemas = require('./models');
@@ -146,6 +150,71 @@ app.use(errorMiddleware);
 // #region Models
 // ###
 registerSchemas();
+
+
+// ###
+// # Login
+// ###
+
+// si on utilise express cf doc
+app.use(passport.initialize());
+const Collegien = mongoose.model('Collegien');
+passport.use(new LocalStrategy({
+  usernameField: 'email',
+  passwordField: 'password'
+},
+function(username, password, done) {
+  console.log('3', username)
+  Collegien.findOne({ email: username }, function (err, user) {
+    
+    console.log('4')
+
+    if (err) { return done(err); }
+    // Return if user not found in database
+    if (!user) {
+      console.log('5')
+
+      return done(null, false, {
+        message: 'User not found'
+      });
+    }
+    // Return if password is wrong
+    if (!user.validPassword(password)) {
+      console.log('6')
+
+      return done(null, false, {
+        message: 'Password is wrong'
+      });
+    }
+    console.log('7')
+    // If credentials are correct, return the user object
+    return done(null, user);
+  });
+}
+));
+
+// Google Authentification TODO
+
+// Use the GoogleStrategy within Passport.
+//   Strategies in passport require a `verify` function, which accept
+//   credentials (in this case, a token, tokenSecret, and Google profile), and
+//   invoke a callback with a user object.
+
+
+passport.use(new GoogleStrategy({
+  clientID: '1050534674845-0b9kjqk7prbps3m2gdh91ei6vv4t8dan.apps.googleusercontent.com',
+  clientSecret: '68KtMCvGrET4E0c-G7Eh_1cS',
+  callbackURL: "http://localhost:3000/api/login/google/callback"
+},
+function(accessToken, refreshToken, profile, done) {
+  console.log(profile);
+    /*  Collegien.findOrCreate({ googleId: profile.id }, function (err, user) {
+       return done(err, user);
+     }); */
+     done(null, profile);
+}
+));
+// #endregion Middlewares
 
 // #endregion Models
 

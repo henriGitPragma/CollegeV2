@@ -47,10 +47,12 @@ export class CollegeService {
       columnsOnly,
     };
 
+    console.log('eeeee', params);
+
 
      return this.http.get<Collegien[]>(`${this.CollegienUrl}`, { params })
        .pipe(
-        tap(() => console.log(`Collegien recupérés`)),
+        tap(res => console.log(res)),
         catchError(this.handleError<Collegien[]>(`getAllCollegien`))
       );
   }

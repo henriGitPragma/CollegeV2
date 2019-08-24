@@ -3,17 +3,17 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "meteole": {
+    "college": {
       "projectType": "application",
       "schematics": {},
       "root": "",
       "sourceRoot": "src",
-      "prefix": "meteole",
+      "prefix": "collegien",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/meteole",
+            "outputPath": "dist/college",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,7 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -59,18 +59,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "meteole:build"
+            "browserTarget": "college:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "meteole:build:production"
+              "browserTarget": "college:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "meteole:build"
+            "browserTarget": "college:build"
           }
         },
         "test": {
@@ -108,16 +108,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "meteole:serve"
+            "devServerTarget": "college:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "meteole:serve:production"
+              "devServerTarget": "college:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "meteole"
+  "defaultProject": "college"
 }

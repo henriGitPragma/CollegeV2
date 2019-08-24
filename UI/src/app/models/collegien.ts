@@ -5,7 +5,7 @@ export interface Collegien {
     _id?: string;
     nomEleve?: string;
     prenomEleve?: string;
-    mailEleve?: EmailValidator;
+    email?: EmailValidator;
     classeEleve?: string;
     regimeEleve?: string;
     h_Arr?: Date; // On identitque l'heure de l'enregistrement
@@ -14,8 +14,6 @@ export interface Collegien {
     prenomParent?: string;
     qualiteParent?: string;
     username?: string;
-    password?: string;
-    passwordConfirme?: string;
-    enable?: boolean,
     createdOn?: string;
+    nomRole?: string;
 }

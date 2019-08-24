@@ -12,13 +12,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "meteole",
+      "college",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "meteole",
+      "college",
       "kebab-case"
     ],
     "import-blacklist": [

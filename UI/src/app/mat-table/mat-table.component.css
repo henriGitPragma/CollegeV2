@@ -1,0 +1,43 @@
+
+  .example-container {
+    height: 650px;
+    overflow: auto;
+    width: 100%
+  }
+
+  mat-table {
+    width: 1160px;
+  }
+
+  .mat-very-good {
+    color: #18a114;
+  }
+
+  .mat-bad {
+    color: #fc0303;
+  }
+
+  .mat-very-bad {
+    color: #060706;
+  }
+
+  .mat-notEmpty {
+    color: #a7afa6;
+  }
+
+  .mat-moyen{
+    color: #ffaa33;
+  }
+
+  .material-icons {
+    font-size: 30px
+  }
+
+  .columnBlocked {
+    background-color: #f5f5f5
+  }
+
+.colorHeader {
+  background-color: #FFE180
+
+}

@@ -1,0 +1,17 @@
+.toolbar { /* ok */
+  height: 20%;
+}
+
+.nav-list {
+  height: 80%; /* ??? */
+  padding: 0px;
+}
+
+.btn-color {
+    color: rgb(219, 162, 55)
+}
+
+.icons { /* ok */
+  margin-left: auto;
+  margin-right: auto;
+}

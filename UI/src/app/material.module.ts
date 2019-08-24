@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
@@ -21,6 +22,12 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSelectModule} from '@angular/material/select';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTreeModule } from '@angular/material/tree';
+
+
+import {MatTooltipModule} from '@angular/material/tooltip'; 
 
 
 @NgModule({
@@ -48,7 +55,11 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatSlideToggleModule,
     MatProgressSpinnerModule,
     MatSelectModule,
-    MatExpansionModule
+    MatExpansionModule,
+    LayoutModule,
+    MatGridListModule,
+    MatTreeModule,
+    MatTooltipModule
 
   ],
   exports: [
@@ -73,7 +84,11 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatSlideToggleModule,
     MatProgressSpinnerModule,
     MatSelectModule,
-    MatExpansionModule
+    MatExpansionModule,
+    LayoutModule,
+    MatGridListModule,
+    MatTreeModule,
+    MatTooltipModule
   ]
 })
 export class MaterialModule { }

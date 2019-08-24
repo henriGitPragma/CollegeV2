@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { CollegeService } from '../service/college.service';
+import { FormGroup, FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
+import { startWith, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 
+//------------------------------------Exports pour filter les classes --------------------------------------------------------------------
+export const _filter = (opt: string[], value: string): string[] => {
+  const filterValue = value.toLowerCase();
+
+  return opt.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
+};
 
 @Component({
   selector: 'app-enfant-create',
@@ -14,64 +20,72 @@ import { Router } from '@angular/router';
 })
 export class EnfantCreateComponent implements OnInit {
 
- // ** Create form Eole
- CollegeForm: FormGroup = this.createEoleFormGroup();
+  //------------------------------------Variables--------------------------------------------------------------------
 
- // ** color of slide
- slidecolor = 'warn';
- btncolor = 'warn';
+  creationForm: FormGroup;
+  newEnfantValues: any;
+  allform = [];
+  nbLocalStorage: number;
+  admin: any;
 
- constructor(  private collegeService: CollegeService,
-               private dialog: MatDialog,
-               private router: Router,
-             ) { }
+  //-------------------------Constructeur + Injection de dépendances --------------------------------------------------------------------
 
- ngOnInit() { }
+  constructor(private formBuilder: FormBuilder,
+    private dialog: MatDialog,
+    private router: Router) { }
+
+  //------------------------------------Initialisation --------------------------------------------------------------------
+
+  ngOnInit() {
+    this.createForm();
+
+  };
+
+  //-------------------------------------Recuperation des données du formulaire --------------------------------------------------------------------
+  createForm() {
+    this.creationForm = this.formBuilder.group({
+      nomEleve: ['', Validators.required],
+      prenomEleve: ['', Validators.required],
+      mailEleve: ['', Validators.required],
+      classeEleve: ['', Validators.required],
+      regimeEleve: ['', Validators.required],
+      nomParent: ['', Validators.required],
+      prenomParent: ['', Validators.required],
+      qualiteParent: ['', Validators.required],
+    });
+  };
+
+  //--------------------------------------------Methodes--------------------------------------------------------------------
+
+  //-------------------------------------Methode de creation des éleves --------------------------------------------------------------------
+
+  createEnfant(formDirective: FormGroupDirective) {
+    if (this.creationForm.valid)
+      console.log('dans createEnfant', this.creationForm.value);
+   /*  this.collegeService.createEnfant(this.creationForm.value)
+      .subscribe(data => this.handleSuccess(data, formDirective), error => this.handleError(error)); */
+  };
+
+  //Appele en cas de succes
+  handleSuccess(data, formDirective) {
+    console.log('ok', data);
+    this.newEnfantValues = data;
+    console.log('newEnfantValues', this.newEnfantValues);
+    this.creationForm.reset();
+    formDirective.resetForm();
+  };
+
+  //Appele en cas d'error
+  handleError(error) {
+    console.error('echec', error);
+  };
 
 
- // ** function to create form Eole
- createEoleFormGroup() {
-   return new FormGroup({
-    nomEleve: new FormControl(''),
-    prenomEleve: new FormControl(''),
-    classeEleve: new FormControl(''),
-    mailEleve: new FormControl(''),
-    regimeEleve: new FormControl(''),
-    nomParent: new FormControl(''),
-    prenomParent: new FormControl(''),
-    qualiteParent: new FormControl(''),
-    username: new FormControl(''),
-    password: new FormControl(''),
-    passwordConfirme: new FormControl(''),
-    enable: new FormControl(''),
-    
-   });
- }
 
- NewCollegienSave() {
-   const newCollegien = this.CollegeForm.value;
-   console.log('New Collegien', newCollegien);
-   this.collegeService.addCollegien(newCollegien).subscribe(data => this.handlerSucess(data));
- }
+  //------------------------------------Variables de FormBuilder pour l'affichage des classes --------------------------------------------------------------------
 
- handlerSucess(collegien) {
-   console.log('Collegien ajouté : ', collegien._id);
-
-   // ** DialogBox Message de confirmation
-   // ** appelle le composant DialogBoxComponent et lui passe comme data : l'éolien
-   console.log('Dialogbox', collegien);
-
-   this.dialog.open(DialogBoxComponent, {
-     width: '460px', maxWidth: '98%',
-     // On lui passe les données : un titre et le message qui peut être en html
-     data: {title: 'Information', msg: 'Le nouvel éolien <b>' + collegien.nom + '</b> a bien été enregistré.'}
-   });
-
-   // ** go to allmétéole
-   // avec ça le routage file sur la page sans attendre la fermeture de la boite de dialogue
-   this.router.navigate(['/global']);
-   // avec ça on attend la fermeture mais il ne faut pas importer Router, enfin je crois
-   // location.href = '/Collegien/admin/allmeteole';
- }
+  searchForm: FormGroup = this.formBuilder.group({
+    DataSearch: '',
+  });
 
 }

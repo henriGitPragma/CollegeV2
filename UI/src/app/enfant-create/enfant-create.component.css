@@ -1,112 +1,74 @@
-.title {
-    font-size: 180%;
-    font-weight: bold;
+.formTotal {
+    margin-top: 1%;
+    background-color: #424242;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.titreListe {
     text-align: center;
 }
 
-#form-new-eolien{
+.mat-form-field {
     font-size: 100%;
-    margin: 3% 5% 20% 5%; /* hdbg */
+    width: 100%;
+    height: 7%;
+    color: white;
+    margin-bottom: 1%;
 }
 
-.div-element {
-    display: inline-block;
-    width: 50%; /* you can change that for more columns */
+.champ {
+    font-size: 70%;
+    margin-left: 85%;
+    margin-bottom: 2%
 }
 
-.element-label {
-    font-size: 90%;
-    display: inline-block;
-    background-color: white;
-    width: 30%;
-    text-align: right;
-    margin: 8px;
+.mat-raised-button {
+    width: 100%;
+    color: aquamarine;
+    margin-bottom: 2%;
 }
 
-.mat-element {
-    font-size: 100%;
-    background-color: rgb(216, 240, 240);
-    width: 60%;
-    border: none;
-    margin: 0px;
-    padding: 6px;
+.date {
+    margin-top: 3%
 }
 
-.btn-form {
-    margin: 36px 0px 0px 24px; /* hdbg */
-    float: right;
-    width: 130px;
+.mat-radio-button {
+    margin-right: 2%;
+    margin-bottom: 5%;
 }
 
-@media only screen and (max-width: 1024px) {
-    #form-new-eolien{
-        font-size: 100%;
-    }
-    .div-element {
-        width: 100%;
-    }
+.regime {
+    margin-top: 10%;
+    margin-right: 3%
 }
 
-@media only screen and (max-width: 730px) {
-    .title {
-        font-size: 130%;
-    }
-
-    #form-new-eolien{
-        font-size: 90%;
-    }
+.qualite {
+    margin-right: 3%
 }
 
-@media only screen and (max-width: 360px) {
-    .element-label {
-        width: 99%;
-        text-align: left;
-    }
-
-    .mat-element {
-        width: 99%;
-    }
+.classe {
+    margin-right: 3%
 }
 
-/*  Icon du status
- */
- .mat-very-good {
-    height: 35px;
-    width: 35px;
-    cursor: pointer;
-    fill: #18a114;
-    margin-bottom: -12px;
-  
-  }
-  
-  .mat-bad {
-    height: 35px;
-    width: 35px;
-    cursor: pointer;
-    fill: #fc0303;
-    margin-bottom: -12px;
-  }
-  
-  .mat-very-bad {
-    height: 35px;
-    width: 35px;
-    cursor: pointer;
-    fill: #060706;
-    margin-bottom: -12px;
-  }
-  
-  .mat-notEmpty {
-    height: 35px;
-    width: 35px;
-    cursor: pointer;
-    fill: #a7afa6;
-    margin-bottom: -12px;
-  }
-  
-  .mat-moyen{
-    height: 35px;
-    width: 35px;
-    cursor: pointer;
-    fill: #ffaa33;
-    margin-bottom: -12px;
-  }
+.classeDetail {
+    width: 100%
+}
+
+.regimeDetail {
+    margin-top: 3%;
+}
+
+.mat-list {
+    width: 100%;
+    margin-left: 5%;
+}
+
+.mat-list-item {
+    color: black;
+    border-color: black;
+}
+
+.espace {
+    margin-right: 5%
+}

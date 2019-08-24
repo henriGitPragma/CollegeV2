@@ -1,0 +1,61 @@
+.mat-sidenav-container { /* ok */
+  height: 100%;
+}
+
+.mat-sidenav { /* ok */
+  height: 100%;
+  width: 200px;
+  border-right: none;
+  box-shadow: -5px 0px 8px black;
+}
+
+.header { /* ok */
+  background: #3f51b5;
+  height: 7%;
+  color: white;
+}
+
+.menu { /* ok */
+  height: 90%;
+  padding: 0px; /* sinon scrollbar verticale */
+  overflow: hidden;
+}
+
+/*
+.mat-toolbar, .mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+*/
+
+.logo{
+  height: 40px;
+}
+
+.displayRight {
+  position: absolute;
+  right: 20px;
+  margin: 0;
+}
+
+.displayAferRight {
+  position: absolute;
+  right: 80px;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* .container-Logo-Eole {
+  width: 20%;
+}
+ */
+
+.material-icons {
+  font-size: 30px;
+}
+
+.btn-color {
+ color: #FFE180
+}
+

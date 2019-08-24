@@ -1,49 +1,83 @@
+<h1 class="titreListe">Creer des élèves</h1>
+<br>
+
+<div class="formTotal">
+  <mat-card>
+    <form [formGroup]="creationForm" #formDirective="ngForm" (submit)="createEnfant(formDirective)">
 
 
+      <h3>Identification Eleve : </h3>
 
-<p class="title">Ajouter un nouvel Collegien</p>
+      <!--     Nom de l'élève-->
+      <div class="example-container">
+        <mat-form-field>
+          <input matInput placeholder="Nom de l'élève" required formControlName="nomEleve">
+        </mat-form-field>
+        <br>
 
-<form id="form-new-eolien" [formGroup]="CollegeForm" (ngSubmit)="NewCollegienSave()">
-    <div class="personnelData">
-        <fieldset class="FieldSet">
-            <legend class="legend">Infos Personnelles</legend>
+        <!--     Prenom de l'élève-->
+        <mat-form-field>
+          <input matInput placeholder="Prenom de l'élève" required formControlName="prenomEleve">
+        </mat-form-field>
+        <br>
 
-            <!-- Nom -->
-            <div class="div-element">
-                <div class="element-label">Nom : </div>
-                <input matInput class="mat-element mat-nom" id="nomEleve" formControlName="nomEleve">
-            </div>
+        <mat-form-field>
+          <input type="email" matInput placeholder="Mail de l'élève" required formControlName="mailEleve">
+        </mat-form-field>
+        <br>
 
-            <!-- Prenom -->
-            <div class="div-element">
-                <div class="element-label">Prenom : </div>
-                <input matInput class="mat-element mat-prenom" id="prenomEleve" formControlName="prenomEleve">
-            </div>
+        <!--     Classe de l'élève-->
 
-          
-        </fieldset>
-    </div>
-
-
-    <div class="posteData">
-        <fieldset class="FieldSet">
-            <legend class="legend">Infos Poste</legend>
-
-           
-        </fieldset>
-    </div>
-
-
-    <div class="meteoleData">
-        <fieldset class="FieldSet">
-                <legend class="legend">Infos Meteoles</legend>
-
-            
-        </fieldset>
-    </div>
+        <span>Classe* : </span>
+        <input type="text" matInput placeholder="Classe de l'eleve" class="search-input classeDetail height"
+          formControlName="classeEleve" name="place" required [matAutocomplete]="autoGroup">
+        <mat-autocomplete #autoGroup="matAutocomplete">
+          <mat-optgroup *ngFor="let group of searchOptions | async" [label]="group.classe">
+            <mat-option *ngFor="let dataClasseDetail of group.classeDetail" [value]="dataClasseDetail">
+              {{dataClasseDetail}}
+            </mat-option>
+          </mat-optgroup>
+        </mat-autocomplete>
 
 
-    <button type="submit" class="btn-form" mat-raised-button color="primary">Sauvegarder</button>
-    <button type="reset" class="btn-form" mat-raised-button color="warn">Remise à zéro</button>
-</form>
+        <!--     Regime de l'élève-->
+        <mat-radio-group aria-label="Select an option" required formControlName="regimeEleve">
+          <span class="regime">Règime * :</span>
+          <mat-radio-button class="regimeDetail" value="Interne">Interne</mat-radio-button>
+          <mat-radio-button class="regimeDetail" value="Externe">Externe</mat-radio-button>
+        </mat-radio-group>
 
+        <h3>Identification Parent : </h3>
+
+        <!--     Nom du parent-->
+        <mat-form-field>
+          <input matInput placeholder="Nom du parent" required formControlName="nomParent">
+        </mat-form-field>
+        <br>
+
+        <!--     Prenom du parent-->
+        <mat-form-field>
+          <input matInput placeholder="Prenom du parent" required formControlName="prenomParent">
+        </mat-form-field>
+        <br>
+
+        <!--         Qualite du parent -->
+        <mat-radio-group aria-label="Select an option" required formControlName="qualiteParent">
+          <span class="qualite">Qualité du tuteur * :</span>
+          <mat-radio-button value="Père">Père</mat-radio-button>
+          <mat-radio-button value="Mère">Mère</mat-radio-button>
+          <mat-radio-button value="Frère">Frère</mat-radio-button>
+          <mat-radio-button value="Soeur">Soeur</mat-radio-button>
+          <mat-radio-button value="Grand - Mère">Grand - Mère</mat-radio-button>
+          <mat-radio-button value="Grand - Père">Grand - Père</mat-radio-button>
+        </mat-radio-group>
+
+        <div class="champ">* Champs Obligatoire</div>
+
+        <button mat-raised-button type="submit" [disabled]="creationForm.invalid">Create</button>
+
+        <button mat-raised-button [routerLink]="['/global']">Retour à la liste</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

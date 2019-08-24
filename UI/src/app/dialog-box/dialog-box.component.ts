@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
-  selector: 'meteole-dialog-box',
+  selector: 'dialog-box',
   templateUrl: './dialog-box.component.html',
   styleUrls: ['./dialog-box.component.css']
 })

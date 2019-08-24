@@ -1,0 +1,30 @@
+/*
+bleu Eole : #3f51b5;
+Jaune : #FFE180
+gris : rgb(248, 248, 248)
+*/
+
+.tree-node {
+  min-height: 30px;
+}
+
+ul, li {
+  cursor: pointer;
+  margin-top: 1px;
+  margin-bottom: 2px;
+}
+
+.mat-icon-button {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.example-tree-invisible {
+  display: none;
+}
+
+.tree-expanded {
+  color: #FFE180;
+  background-color: #3f51b5;
+}

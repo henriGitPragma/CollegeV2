@@ -17,18 +17,11 @@ const logger = pino({
 
 // Penser à mettre async /await
 module.exports = async function getAllCollegienCritere(req, res) {
-  logger.info('HANDLER getAllCollegien ou ByCriteria');
+  logger.info('HANDLER getAllCollegien ou ByCriteria', req.query);
   const params = req.query;
-  
-  if (params.columnsOnly === 'true') {
-    const findColumnsOnly = await collegienFindColumnsOnly(params);
-    res.status(200).json(findColumnsOnly);
-  } else {
+
     const findAllCollegienCritere = await collegienFindAllCritere(params);
     /*   console.log('test', JSON.stringify(findAllEolienCritere, null, 2))
      */
     res.status(200).json(findAllCollegienCritere);
-  }
-
-
-};
+  };

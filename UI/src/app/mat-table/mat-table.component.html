@@ -1,0 +1,35 @@
+<div class="example-container">
+
+    <mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
+
+        <ng-container matColumnDef="nomEleve">
+            <mat-header-cell matTooltip="Info"
+            matTooltipPosition="left" class="colorHeader" *matHeaderCellDef mat-sort-header>Nom : </mat-header-cell>
+            <mat-cell class="columnBlocked"  *matCellDef="let collegien">{{collegien.nomEleve | titlecase}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="prenomEleve">
+            <mat-header-cell  matTooltip="Info"
+            matTooltipPosition="left" class="colorHeader" *matHeaderCellDef mat-sort-header>Prenom : </mat-header-cell>
+            <mat-cell *matCellDef="let collegien">{{collegien.prenomEleve | titlecase}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="classeEleve">
+            <mat-header-cell class="colorHeader" *matHeaderCellDef mat-sort-header>Classe : </mat-header-cell>
+            <mat-cell *matCellDef="let collegien">{{collegien.classeEleve | titlecase}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="h_Arr">
+            <mat-header-cell class="colorHeader" *matHeaderCellDef mat-sort-header>Heure d'arrivée : </mat-header-cell>
+            <mat-cell *matCellDef="let collegien">{{collegien.h_Arr |  date :'dd/MM/yyyy'}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="h_Dep">
+            <mat-header-cell class="colorHeader" *matHeaderCellDef mat-sort-header>Heure de Départ : </mat-header-cell>
+            <mat-cell *matCellDef="let collegien">{{collegien.h_Dep |  date :'dd/MM/yyyy'}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</div>

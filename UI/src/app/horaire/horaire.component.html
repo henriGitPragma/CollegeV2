@@ -1,0 +1,31 @@
+<mat-toolbar >
+        <div class="icons">
+
+            <button  id="kpi" type="button" mat-icon-button (click)="btnKpiFunction()">
+                <mat-icon>timeline</mat-icon>
+              </button>
+
+              <button id="calendar" type="button" mat-icon-button (click)="btnCalendarFunction()">
+                <mat-icon>date_range</mat-icon>
+              </button>
+
+              <button id="infoPerso" [routerLink]="['/infoCollegien']" type="button" mat-icon-button (click)="btnInfoMeteoleFunction()">
+                <mat-icon>account_circle</mat-icon>
+              </button>
+        </div>
+         </mat-toolbar>
+
+          <mat-nav-list class="list">
+
+              <div *ngIf="kpiComponent === true">
+                  <collegien-kpi></collegien-kpi>
+                </div>
+
+                        <div *ngIf="calendarComponent === true">
+                          <collegien-tree-calendar></collegien-tree-calendar>
+                        </div>
+
+                        <div *ngIf="listNomPrenomComponent === true">
+                                <collegien-list-nom-prenom></collegien-list-nom-prenom>
+                            </div>
+          </mat-nav-list>
