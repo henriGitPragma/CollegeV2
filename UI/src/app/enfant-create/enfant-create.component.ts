@@ -20,7 +20,9 @@ export const _filter = (opt: string[], value: string): string[] => {
 })
 export class EnfantCreateComponent implements OnInit {
 
-  //------------------------------------Variables--------------------------------------------------------------------
+  //----------------------------------------------------------------------------
+  //-----------------------Variables--------------------------------------------
+  //----------------------------------------------------------------------------
 
   creationForm: FormGroup;
   newEnfantValues: any;
@@ -28,20 +30,32 @@ export class EnfantCreateComponent implements OnInit {
   nbLocalStorage: number;
   admin: any;
 
-  //-------------------------Constructeur + Injection de dépendances --------------------------------------------------------------------
 
-  constructor(private formBuilder: FormBuilder,
+  //--------------------------------------------------------------------------------
+  //-----------------------Constructeur + Injection de dépendances------------------
+  //--------------------------------------------------------------------------------
+
+  constructor(
+    private formBuilder: FormBuilder,
     private dialog: MatDialog,
-    private router: Router) { }
+    private router: Router
+  ) { }
 
-  //------------------------------------Initialisation --------------------------------------------------------------------
+
+  //------------------------------------------------------------------------------
+  //-----------------------Initialisation-----------------------------------------
+  //------------------------------------------------------------------------------
 
   ngOnInit() {
     this.createForm();
-
   };
 
-  //-------------------------------------Recuperation des données du formulaire --------------------------------------------------------------------
+  //------------------------------------------------------------------------
+  //-----------------------Methodes-----------------------------------------
+  //------------------------------------------------------------------------
+  /**
+   * Formulaire de création du nouveau collégien
+   */
   createForm() {
     this.creationForm = this.formBuilder.group({
       nomEleve: ['', Validators.required],
@@ -55,18 +69,24 @@ export class EnfantCreateComponent implements OnInit {
     });
   };
 
-  //--------------------------------------------Methodes--------------------------------------------------------------------
-
-  //-------------------------------------Methode de creation des éleves --------------------------------------------------------------------
-
+  //---------------------------------------------------------------------------------------------------
+  /**
+   * Sauvegarde du collégien
+   * @param formDirective 
+   */
   createEnfant(formDirective: FormGroupDirective) {
     if (this.creationForm.valid)
       console.log('dans createEnfant', this.creationForm.value);
-   /*  this.collegeService.createEnfant(this.creationForm.value)
-      .subscribe(data => this.handleSuccess(data, formDirective), error => this.handleError(error)); */
+    /*  this.collegeService.createEnfant(this.creationForm.value)
+       .subscribe(data => this.handleSuccess(data, formDirective)); */
   };
 
-  //Appele en cas de succes
+  //---------------------------------------------------------------------------------------------------
+  /**
+   * Appelé en cas de Succes de la création du nouveau collégien
+   * @param data 
+   * @param formDirective 
+   */
   handleSuccess(data, formDirective) {
     console.log('ok', data);
     this.newEnfantValues = data;
@@ -75,15 +95,19 @@ export class EnfantCreateComponent implements OnInit {
     formDirective.resetForm();
   };
 
-  //Appele en cas d'error
+  //---------------------------------------------------------------------------------------------------
+  /**
+   * Appelé en Cas d'erreur
+   * @param error 
+   */
   handleError(error) {
     console.error('echec', error);
   };
 
-
-
-  //------------------------------------Variables de FormBuilder pour l'affichage des classes --------------------------------------------------------------------
-
+  //----------------------------------------------------------------------------------------------------
+  /**
+   * Variables de FormBuilder pour l'affichage des classes
+   */
   searchForm: FormGroup = this.formBuilder.group({
     DataSearch: '',
   });

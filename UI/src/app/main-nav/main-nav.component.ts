@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -9,9 +9,13 @@ import { AuthenticationService } from '../service/authentication.service';
   templateUrl: './main-nav.component.html',
   styleUrls: ['./main-nav.component.css']
 })
-export class MainNavComponent {
+export class MainNavComponent implements OnInit {
 
-  public horaireComponent =   true;
+  //----------------------------------------------------------------------------
+  //-----------------------Variables--------------------------------------------
+  //----------------------------------------------------------------------------
+
+  public horaireComponent = true;
   public listNomPrenomComponent: boolean;
   public presenceComponent: boolean;
 
@@ -20,31 +24,63 @@ export class MainNavComponent {
       map(result => result.matches),
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, public auth: AuthenticationService) {}
 
-  //  Suppression de tous les composants
-  resetAll(){
-    this.horaireComponent = false ;
+  //--------------------------------------------------------------------------------
+  //-----------------------Constructeur + Injection de dépendances------------------
+  //--------------------------------------------------------------------------------
+
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    public auth: AuthenticationService
+  ) { }
+
+
+  //------------------------------------------------------------------------------
+  //-----------------------Initialisation-----------------------------------------
+  //------------------------------------------------------------------------------
+
+  ngOnInit() {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+  }
+
+  //------------------------------------------------------------------------
+  //-----------------------Methodes-----------------------------------------
+  //------------------------------------------------------------------------
+  /**
+   * Suppression de tous les composants
+   */
+  resetAll() {
+    this.horaireComponent = false;
     this.listNomPrenomComponent = false;
     this.presenceComponent = false;
   }
 
-  // Suppression des couleurs
-  resetAllColor(){
+  //------------------------------------------------------------------------
+  /**
+   * Suppression des couleurs
+   */
+  resetAllColor() {
     document.getElementById('supervisor').classList.remove('btn-color');
     document.getElementById('visuel').classList.remove('btn-color');
     document.getElementById('presence').classList.remove('btn-color');
   }
 
-  // Bouton de l'affichage de la 
+  //------------------------------------------------------------------------
+  /**
+   * Bouton de l'affichage
+   */
   btnVisuelFunction() {
     this.resetAll();
     this.resetAllColor();
-    this.horaireComponent = true ;
-     document.getElementById('visuel').classList.add('btn-color');
+    this.horaireComponent = true;
+    document.getElementById('visuel').classList.add('btn-color');
   }
 
-  // Bouton des informatiosn du college
+  //------------------------------------------------------------------------
+  /**
+   * Bouton des informatiosn du college
+   */
   btnInfoCollegienFunction() {
     this.resetAll();
     this.resetAllColor();
@@ -52,13 +88,14 @@ export class MainNavComponent {
     document.getElementById('supervisor').classList.add('btn-color');
   }
 
-  // Bouton de la presence
+  //------------------------------------------------------------------------
+  /**
+   * Bouton de la presence
+   */
   btnInfoPresenceFunction() {
     this.resetAll();
     this.resetAllColor();
-
     this.presenceComponent = true;
     document.getElementById('presence').classList.add('btn-color');
   }
-
 }

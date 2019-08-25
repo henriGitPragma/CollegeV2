@@ -18,19 +18,19 @@ import { AuthGuardService } from './service/auth-guard.service';
 //--------------------------------//!\\ Attention à l'ordre des routes-------------------
 const routes: Routes = [
 
- // Routes d'autehntification
- {path: '', component: LoginComponent },
- {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
+  // Routes d'autehntification
+  { path: '', component: LoginComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
 
- // Home page
- {path: 'home', component: HomePageComponent, canActivate: [AuthGuardService] },
-  {path:'dashboard', component: DashboardComponent, canActivate: [AuthGuardService]},
-  {path:'infoCollegien', component: InfoCollegienComponent, canActivate: [AuthGuardService]},
-  {path:'presence', component: PresenceComponent, canActivate: [AuthGuardService]},
-  {path:'addCollegien', component: EnfantCreateComponent, canActivate: [AuthGuardService]},
-  {path:'horaire', component: HoraireComponent, canActivate: [AuthGuardService]},
- {path:'updateCSV', component: UpdateFileCSVComponent, canActivate: [AuthGuardService]},
-{path: '**', component: ErrorpageComponent, canActivate: [AuthGuardService]} // Aucune route associée
+  // Home page
+  { path: 'home', component: HomePageComponent, canActivate: [AuthGuardService] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService] },
+  { path: 'infoCollegien', component: InfoCollegienComponent, canActivate: [AuthGuardService] },
+  { path: 'presence', component: PresenceComponent, canActivate: [AuthGuardService] },
+  { path: 'addCollegien', component: EnfantCreateComponent, canActivate: [AuthGuardService] },
+  { path: 'horaire', component: HoraireComponent, canActivate: [AuthGuardService] },
+  { path: 'updateCSV', component: UpdateFileCSVComponent, canActivate: [AuthGuardService] },
+  { path: '**', component: ErrorpageComponent, canActivate: [AuthGuardService] } // Aucune route associée
 
 ];
 

@@ -5,7 +5,7 @@ export interface Collegien {
     _id?: string;
     nomEleve?: string;
     prenomEleve?: string;
-    email?: EmailValidator;
+    email?: string;
     classeEleve?: string;
     regimeEleve?: string;
     h_Arr?: Date; // On identitque l'heure de l'enregistrement

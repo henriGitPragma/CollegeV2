@@ -10,24 +10,44 @@ import { Observable, of } from 'rxjs';
 })
 export class CollegeService {
 
-  constructor(private http: HttpClient) { }
+  //----------------------------------------------------------------------------
+  //-----------------------Variables--------------------------------------------
+  //----------------------------------------------------------------------------
 
   private CollegienUrl = 'http://localhost:3000/api/Collegien';
 
-  // Methode appelé en cas d'echec
+
+  //--------------------------------------------------------------------------------
+  //-----------------------Constructeur + Injection de dépendances------------------
+  //--------------------------------------------------------------------------------
+
+  constructor(
+    private http: HttpClient
+  ) { }
+
+
+  //------------------------------------------------------------------------
+  //-----------------------Methodes-----------------------------------------
+  //------------------------------------------------------------------------
+  /**
+   * Methode appelé en cas d'echec
+   * @param operation 
+   * @param result 
+   */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
-      console.error('errrror', error);
-
+      console.error('ERROR', error);
       console.log(`${operation} echec: ${error.message}`);
-
       return of(result as T);
     };
   }
 
 
-  // POST
+  //------------------------------------------------------------------------
+  /**
+   * Sauvegarde d'un Collegien
+   * @param collegien 
+   */
   addCollegien(collegien: Collegien): Observable<Collegien> {
     console.log('Post du Service', collegien);
     return this.http.post<Collegien>(this.CollegienUrl, collegien)
@@ -37,26 +57,34 @@ export class CollegeService {
       );
   }
 
-  // GETAll + Criteres
+  //------------------------------------------------------------------------
+  /**
+   * Recherche des Collégiens 
+   * @param collegien 
+   * @param columnsOnly 
+   */
   getAllCollegienCritere(collegien: Collegien, columnsOnly): Observable<Collegien[]> {
     console.log('Get All Collegien Service', collegien);
 
     const params = {
       nomEleve: collegien.nomEleve || '',
       prenomEleve: collegien.prenomEleve || '',
+      email: collegien.email || '',
       columnsOnly,
     };
-
-    console.log('eeeee', params);
-
-
-     return this.http.get<Collegien[]>(`${this.CollegienUrl}`, { params })
-       .pipe(
+    console.log('params', params);
+    return this.http.get<Collegien[]>(`${this.CollegienUrl}`, { params })
+      .pipe(
         tap(res => console.log(res)),
         catchError(this.handleError<Collegien[]>(`getAllCollegien`))
       );
   }
 
+  //------------------------------------------------------------------------
+  /**
+   * Modification d'un collégien
+   * @param collegien 
+   */
   putCollegien(collegien: Collegien): Observable<Collegien> {
     console.log('Put du Service', collegien._id);
     const _id = collegien._id;
@@ -66,7 +94,12 @@ export class CollegeService {
         catchError(this.handleError<Collegien>(`PutEolein ${collegien}`))
       );
   }
-
+  
+  //------------------------------------------------------------------------
+  /**
+   * Recherche par ID du collégien
+   * @param collegien 
+   */
   getByid(collegien: Collegien): Observable<Collegien> {
     console.log('dans le getbyId du Service', collegien._id);
     const _id = collegien._id;

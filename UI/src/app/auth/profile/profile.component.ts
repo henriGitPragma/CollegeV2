@@ -7,9 +7,27 @@ import { AuthenticationService, UserDetails } from 'src/app/service/authenticati
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+
+  //----------------------------------------------------------------------------
+  //-----------------------Variables--------------------------------------------
+  //----------------------------------------------------------------------------
+
+  // Détails sur les infos dans le token
   details: UserDetails;
 
-  constructor(private auth: AuthenticationService) {}
+
+  //--------------------------------------------------------------------------------
+  //-----------------------Constructeur + Injection de dépendances------------------
+  //--------------------------------------------------------------------------------
+
+  constructor(
+    private auth: AuthenticationService
+  ) { }
+
+
+  //------------------------------------------------------------------------------
+  //-----------------------Initialisation-----------------------------------------
+  //------------------------------------------------------------------------------
 
   ngOnInit() {
     console.log(' dans le component profil')

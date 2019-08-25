@@ -1,6 +1,6 @@
 import { CollegeService } from './../service/college.service'
 import { Router } from '@angular/router';
-import {Component, ElementRef, EventEmitter, Input, Output, ViewChild, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild, OnInit } from '@angular/core';
 
 
 
@@ -15,55 +15,48 @@ export class UpdateFileCSVComponent implements OnInit {
   //-----------------------Variables--------------------------------------------
   //----------------------------------------------------------------------------
 
-@ViewChild('file', {static: true}) file: ElementRef;
-@Input() btnText: string;
-@Input() errorMsg: string;
-@Output() response: EventEmitter<any> = new EventEmitter<any>();
+  @ViewChild('file', { static: true }) file: ElementRef;
+  @Input() btnText: string;
+  @Input() errorMsg: string;
+  @Output() response: EventEmitter<any> = new EventEmitter<any>();
 
-sucessCSV;
-tabCSV;
+  sucessCSV;
+  tabCSV;
 
 
-
- //--------------------------------------------------------------------------------
+  //--------------------------------------------------------------------------------
   //-----------------------Constructeur + Injection de dépendances------------------
   //--------------------------------------------------------------------------------
 
-  constructor(private collegeService: CollegeService, private router: Router ) { this.btnText = 'Importer un fichier CSV pour creer des enfants';
-  this.errorMsg = 'Invalid format. Please upload only csv files..';}
+  constructor(
+    private collegeService: CollegeService,
+    private router: Router) {
+    this.btnText = 'Importer un fichier CSV pour creer des enfants';
+    this.errorMsg = 'Invalid format. Please upload only csv files..';
+  }
 
   //------------------------------------------------------------------------------
   //-----------------------Initialisation-----------------------------------------
   //------------------------------------------------------------------------------
-  ngOnInit(){
-    /*  //Verification si connextion et admin
-     this.admin = sessionStorage.getItem("admin");
-     this.nbLocalStorage = sessionStorage.length;
-     console.log(this.nbLocalStorage);
-     console.log(this.admin);
-     if (this.nbLocalStorage == 0) {
-       this.router.navigate(['/auth'])
-     }
-     if (this.admin == "false") {
-       console.log('dans le false')
-       this.router.navigate(['/accueilUser'])
-     } */
 
-
-  }
+  ngOnInit() { }
 
 
   //-------------------------------------------------------------------
-  //-----------------------CSV-----------------------------------------
+  //-----------------------Methodes------------------------------------
   //-------------------------------------------------------------------
+  /**
+   * Import CSV
+   * @param e 
+   */
   async getFiles(e) {
     console.log("Initialisation")
     try {
       const file = e.target.files[0];
       if (file.type !== 'application/vnd.ms-excel' && file.type !== 'text/csv') {
         this.file.nativeElement.value = '';
-        this.response.emit({type: 'error', data: this.errorMsg});
-        console.log("Erreur ficher du type", file.type );
+        this.response.emit({ type: 'error', data: this.errorMsg });
+        console.log("Erreur ficher du type", file.type);
         return;
       }
       let formatted: any = await this.readerResultOptimized(file);
@@ -74,14 +67,18 @@ tabCSV;
       this.arrayToObject(data, headers);
     } catch (e) {
       this.file.nativeElement.value = '';
-      this.response.emit({type: 'success', data: []});
+      this.response.emit({ type: 'success', data: [] });
     }
 
     this.router.navigate(['/global']);
   }
 
+  /**
+   * Import CSV
+   * @param file 
+   */
   readerResultOptimized(file) {
-console.log('1', file.type);
+    console.log('1', file.type);
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       console.log('2')
@@ -99,6 +96,9 @@ console.log('1', file.type);
     });
   }
 
+  /**
+   *  Import CSV
+   */
   formatCSVData(data) {
     console.log('6')
     return data.map(text => {
@@ -118,6 +118,11 @@ console.log('1', file.type);
     });
   }
 
+  /**
+   *  Import CSV
+   * @param data 
+   * @param headers 
+   */
   async arrayToObject(data, headers) {
     console.log('8')
     let obj = [];
@@ -133,7 +138,7 @@ console.log('1', file.type);
       obj.push(o);
     });
     this.file.nativeElement.value = '';
-    this.response.emit({type: 'success', data: obj});
+    this.response.emit({ type: 'success', data: obj });
   }
 }
 

@@ -24,15 +24,39 @@ export interface TokenPayload {
 
 @Injectable()
 export class AuthenticationService {
+
+  //----------------------------------------------------------------------------
+  //-----------------------Variables--------------------------------------------
+  //----------------------------------------------------------------------------
+
   private token: string;
 
-  constructor(private http: HttpClient, private router: Router) {}
 
+  //--------------------------------------------------------------------------------
+  //-----------------------Constructeur + Injection de dépendances------------------
+  //--------------------------------------------------------------------------------
+
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) { }
+
+  //------------------------------------------------------------------------
+  //-----------------------Methodes-----------------------------------------
+  //------------------------------------------------------------------------
+  /**
+   * Sauvegarde du Token
+   * @param token 
+   */
   private saveToken(token: string): void {
     localStorage.setItem('collegien-token', token);
     this.token = token;
   }
 
+  //------------------------------------------------------------------------
+  /**
+   * Position dans le local Storage
+   */
   private getToken(): string {
     if (!this.token) {
       this.token = localStorage.getItem('collegien-token');
@@ -40,6 +64,10 @@ export class AuthenticationService {
     return this.token;
   }
 
+  //------------------------------------------------------------------------
+  /**
+   * Récupération des infos dans le token
+   */
   public getUserDetails(): UserDetails {
     const token = this.getToken();
     let payload;
@@ -52,6 +80,10 @@ export class AuthenticationService {
     }
   }
 
+  //------------------------------------------------------------------------
+  /**
+   * Pour savoir qui est logué
+   */
   public isLoggedIn(): boolean {
     const user = this.getUserDetails();
     if (user) {
@@ -61,7 +93,11 @@ export class AuthenticationService {
     }
   }
 
-
+  //------------------------------------------------------------------------
+  /**
+   * Pour pouvoir se loguer
+   * @param user
+   */
   public login(user: TokenPayload): Observable<any> {
     console.log('dans le service Login', user);
     const urlLogin = 'http://localhost:3000/api/login';
@@ -79,10 +115,14 @@ export class AuthenticationService {
     return request;
   }
 
+  //------------------------------------------------------------------------
+  /**
+   * Connaitre le profil de la personne loguée
+   */
   public profile(): Observable<any> {
     console.log('dans le service profile', this.token);
     const urlProfile = 'http://localhost:3000/api/collegien/profile';
-    const base = this.http.get(urlProfile, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+    const base = this.http.get(urlProfile, { headers: { Authorization: `Bearer ${this.getToken()}` } });
 
     const request = base.pipe(
       map((data: TokenResponse) => {
@@ -96,6 +136,10 @@ export class AuthenticationService {
     return request;
   }
 
+  //------------------------------------------------------------------------
+  /**
+   * Se déloguer
+   */
   public logout(): void {
     console.log('dans le service logout');
     this.token = '';
@@ -103,24 +147,24 @@ export class AuthenticationService {
     this.router.navigateByUrl('/');
   }
 
+  //------------------------------------------------------------------------
+  /**
+   * Connexion avec google
+   * @param email 
+   */
   public googleAuth(email) {
     console.log('googleAuth', email);
     const urlAuth = 'http://localhost:3000/api/collegien/profile';
-    const base =  this.http.get(`${urlAuth}/${email}`);
-
-    console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy', base)
-
+    const base = this.http.get(`${urlAuth}/${email}`);
     const request = base.pipe(
       map((data: TokenResponse) => {
         if (data.token) {
-          console.log('vvvvvvvvvvvvvvvv', data)
+          console.log('token', data)
           this.saveToken(data.token);
         }
         return data;
       })
     );
-
     return request;
-    }
-
+  }
 }

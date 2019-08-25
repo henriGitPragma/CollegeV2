@@ -5,8 +5,24 @@ import { AuthenticationService } from './authentication.service';
 @Injectable()
 export class AuthGuardService implements CanActivate {
 
-  constructor(private auth: AuthenticationService, private router: Router) {}
+  //----------------------------------------------------------------------------
+  //-----------------------Variables--------------------------------------------
+  //----------------------------------------------------------------------------
 
+
+  //--------------------------------------------------------------------------------
+  //-----------------------Constructeur + Injection de dépendances------------------
+  //--------------------------------------------------------------------------------
+
+  constructor(private auth: AuthenticationService, private router: Router) { }
+
+
+  //------------------------------------------------------------------------
+  //-----------------------Methodes-----------------------------------------
+  //------------------------------------------------------------------------
+  /**
+   * Pour valider la connection
+   */
   canActivate() {
     if (!this.auth.isLoggedIn()) {
       this.router.navigateByUrl('/updateCSV');

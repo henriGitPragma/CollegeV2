@@ -10,6 +10,10 @@ import { MatTableDataSource } from '@angular/material';
 })
 export class MatTableComponent implements OnInit {
 
+  //----------------------------------------------------------------------------
+  //-----------------------Variables--------------------------------------------
+  //----------------------------------------------------------------------------
+
   @Input() annee: string;
   @Input() mois: string;
 
@@ -26,18 +30,40 @@ export class MatTableComponent implements OnInit {
   // New Eolien
   public collegien: Collegien = {};
 
-  constructor(private collegeService: CollegeService) { }
+
+  //--------------------------------------------------------------------------------
+  //-----------------------Constructeur + Injection de dépendances------------------
+  //--------------------------------------------------------------------------------
+
+  constructor(
+    private collegeService: CollegeService
+  ) { }
+
+
+  //------------------------------------------------------------------------------
+  //-----------------------Initialisation-----------------------------------------
+  //------------------------------------------------------------------------------
 
   ngOnInit() {
     this.getData();
   }
 
+  //------------------------------------------------------------------------------
+  //-----------------------Appelé apres le chargement de la page HTML-------------
+  //------------------------------------------------------------------------------
+
   ngAfterViewChecked(): void {
     console.log('annee/mois', this.annee, this.mois)
   }
 
+
+  //------------------------------------------------------------------------
+  //-----------------------Methodes-----------------------------------------
+  //------------------------------------------------------------------------
+  /**
+   * Récupération de tous les collégiens
+   */
   getData() {
     this.collegeService.getAllCollegienCritere(this.collegien, []).subscribe(res => this.dataSource.data = res);
-    }
-
+  }
 }

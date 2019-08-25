@@ -13,16 +13,12 @@ const logger = pino({
 // ****************************************************************************************************
 function collegienLogin(req, res) {
   console.log('1', req.body)
-
   passport.authenticate('local', function(err, user, info){
     console.log('2', user, info)
-
     var token;
-
     // If Passport throws/catches an error
     if (err) {
       console.log('8', user)
-
       res.status(404).json(err);
       return;
     }
@@ -30,16 +26,13 @@ function collegienLogin(req, res) {
     // If a user is found
     if(user){
       console.log('9', user)
-
       token = user.generateJwt();
       res.status(200);
       res.json({
         "token" : token
       });
     } else {
-
       console.log('10', user)
-
       // If user is not found
       res.status(401).json(info);
     }
@@ -50,9 +43,7 @@ function collegienLogin(req, res) {
 // ****************************************************************************************************
 // Recuperer le profil de la personne connecté
 async function collegienProfile(req, res) {
-
   console.log('1', req.payload)
-
   if (!req.payload._id) {
     console.log('1',)
     res.status(401).json({
@@ -66,6 +57,7 @@ async function collegienProfile(req, res) {
       });
   }
 };
+
 // ****************************************************************************************************
 async function authGoogle(req) {
   logger.info('SERVICE authGoogle', req);
@@ -73,7 +65,6 @@ async function authGoogle(req) {
     return {"token" : collegienCurrent.generateJwt()};
 }
 
-// **************************************************************************************************
 // ****************************************************************************************************
 async function collegienSave(req) {
 
@@ -119,13 +110,9 @@ function collegienFindByIdAndDelete(id) {
 // **************************************************************************************************
 async function collegienFindByIdAndUpdate(id, update) {
   logger.info('SERVICE collegienFindByIdAndUpdate');
-
   const collegienByID = await collegienFindById(id);
-
   const collegienUpdate = Object.assign(collegienByID, update);
-
   const saveNewUpdate = await new Collegien(collegienUpdate);
-
   return saveNewUpdate.save();
 }
 
@@ -142,7 +129,6 @@ function collegienFindAllCritere(queryparams) {
   const criterePrenom = queryparams.prenomEleve;
   // eslint-disable-next-line prefer-template
   const regexPrenom = new RegExp('^' + criterePrenom, 'i');
-
 
   return Collegien.find({
     nomEleve: regexNom,

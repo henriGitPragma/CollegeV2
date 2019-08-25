@@ -17,6 +17,11 @@ export class FileNode {
   styleUrls: ['./tree-calendar.component.css']
 })
 export class TreeCalendarComponent {
+
+  //----------------------------------------------------------------------------
+  //-----------------------Variables--------------------------------------------
+  //----------------------------------------------------------------------------
+
   private nestedTreeControl: NestedTreeControl<FileNode>;
   private nestedDataSource: MatTreeNestedDataSource<FileNode>;
 
@@ -25,25 +30,41 @@ export class TreeCalendarComponent {
 
   private sActiveYear: string;
   private sActiveMonth: string;
-  // -----------------------------------------------------------------------------------------------
-  constructor(private router: Router) {
+
+
+  //--------------------------------------------------------------------------------
+  //-----------------------Constructeur + Injection de dépendances------------------
+  //--------------------------------------------------------------------------------
+
+  constructor(
+    private router: Router
+  ) {
     this.nestedTreeControl = new NestedTreeControl<FileNode>(this._getChildren);
     this.nestedDataSource = new MatTreeNestedDataSource();
     this.nestedDataSource.data = this.generateCalendarMeteole();
   }
-  // -----------------------------------------------------------------------------------------------
+  //------------------------------------------------------------------------------
+  //-----------------------Appelé apres le chargement de la page HTML---------------
+  //------------------------------------------------------------------------------
+
   ngAfterViewInit(): void {
     this.nodeChange(null);
   }
-  // -----------------------------------------------------------------------------------------------
-  //** Methode qui génère un calendrier automatiquement avec un point de départ */
+
+
+  //------------------------------------------------------------------------
+  //-----------------------Methodes-----------------------------------------
+  //------------------------------------------------------------------------
+  /**
+   * Methode qui génère un calendrier automatiquement avec un point de départ 
+   */
   generateCalendarMeteole() {
     const calendarMeteoles = [];
     const startYear = 2017;
     const startMonth = 1; // correspond à Février
 
     const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-                    'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+      'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth();
@@ -64,11 +85,11 @@ export class TreeCalendarComponent {
         // ajout des mois
         childrens.push(
           {
-          name: months[x],
-          expanded: (x === currentMonth ? true : false),
-          index: childrens.length,
-          parent: calendarMeteoles.length,
-          childGroups: []
+            name: months[x],
+            expanded: (x === currentMonth ? true : false),
+            index: childrens.length,
+            parent: calendarMeteoles.length,
+            childGroups: []
           }
         );
       }
@@ -84,32 +105,41 @@ export class TreeCalendarComponent {
     }
     return calendarMeteoles;
   }
+
   // -----------------------------------------------------------------------------------------------
-  // ** Au clic sur le treenode on va changer l'état de tous les élements
+  /**
+   * Au clic sur le treenode on va changer l'état de tous les élements
+   * @param node 
+   */
   nodeClick(node) {
     //console.log(node);
-
-    // ** cette methode va fermer tous les élements
+    // Cette methode va fermer tous les élements
     this.collapseAll();
-
-    // ** puis on va ouvrir les nodes qui nous concernent
+    // Puis on va ouvrir les nodes qui nous concernent
     this.expandNodewidthParent(node);
-
-    // ** taches à réaliser sur le clic
+    // Taches à réaliser sur le clic
     this.nodeChange(node);
   }
+
+
   // -----------------------------------------------------------------------------------------------
-  //** Méthode pour fermer tous les élements
+  /**
+   * Méthode pour fermer tous les élements
+   */
   collapseAll() {
-      this.nestedDataSource.data.forEach((year: FileNode) => {
-        // ** pour l'année on ferme tous les mois
-        year.childGroups.forEach((month: FileNode) => month.expanded = false);
-        // ** puis on ferme l'année
-        year.expanded = false;
-      });
+    this.nestedDataSource.data.forEach((year: FileNode) => {
+      // ** pour l'année on ferme tous les mois
+      year.childGroups.forEach((month: FileNode) => month.expanded = false);
+      // ** puis on ferme l'année
+      year.expanded = false;
+    });
   }
+
   // -----------------------------------------------------------------------------------------------
-  //** Méthode pour ouvrir le node et son parent passes en parametre
+  /**
+   * Méthode pour ouvrir le node et son parent passes en parametre
+   * @param node 
+   */
   expandNodewidthParent(node) {
     if (node) {
       // ** si on n'est pas à la racine (si pas une annee)
@@ -134,23 +164,25 @@ export class TreeCalendarComponent {
       }
     }
   }
+
   // -----------------------------------------------------------------------------------------------
-  //** Quand on a cliqué sur le mois ou l'année */
+  /**
+   * Quand on a cliqué sur le mois ou l'année 
+   * @param node 
+   */
   nodeChange(node) {
-/*
-    if (node) {
-      if (node.parent === -1) {
-        // si c'est une année
-      } else {
-        // si c'est un mois
-      }
-    };
- */
-console.log('***************', this.sActiveYear, this.sActiveMonth);
+    /*
+        if (node) {
+          if (node.parent === -1) {
+            // si c'est une année
+          } else {
+            // si c'est un mois
+          }
+        };
+     */
+    console.log('***************', this.sActiveYear, this.sActiveMonth);
 
     //this.router.navigate(['/eolienMeteole'], { queryParams: { data: node.name } });
-    this.router.navigate(['/dashboard'], { queryParams: {annee:this.sActiveYear, mois:this.sActiveMonth} });
+    this.router.navigate(['/dashboard'], { queryParams: { annee: this.sActiveYear, mois: this.sActiveMonth } });
   }
-  // -----------------------------------------------------------------------------------------------
-
 }
