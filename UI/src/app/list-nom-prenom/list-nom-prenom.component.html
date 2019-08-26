@@ -10,7 +10,7 @@
 
 <mat-selection-list>
     <mat-list-item class="liste" *ngFor="let collegien of dataSource" (click)="previousIDcollegien(collegien._id)">
-        {{collegien.nomEleve | uppercase}} {{collegien.prenomEleve | titlecase}}
+        {{collegien.nomEleve | uppercase}} {{collegien.prenomEleve | titlecase}} {{collegien.classeEleve | uppercase}}
     </mat-list-item>
 </mat-selection-list>
 

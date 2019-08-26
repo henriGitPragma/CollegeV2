@@ -28,7 +28,7 @@ var CollegienSchema = new mongoose.Schema({
     trim: true,
     titlecase: true,
   },
-
+date :[{
   h_Arr: {
     type: Date,
     // `Date.now()` returns the current unix timestamp as a number
@@ -38,7 +38,8 @@ var CollegienSchema = new mongoose.Schema({
     type: Date,
     // `Date.now()` returns the current unix timestamp as a number
     default: new Date(),
-  },
+  }
+}],
   nomParent: {
     type: String,
     trim: true,

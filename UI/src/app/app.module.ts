@@ -35,6 +35,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider } from 'angularx-social-login';
 import { InfoCollegienComponent } from './info-collegien/info-collegien.component';
+import { AccueilUserComponent } from './accueil-user/accueil-user.component';
 
 
 const config = new AuthServiceConfig([
@@ -69,6 +70,7 @@ export function provideConfig() {
     KpiComponent,
     EnfantCreateComponent,
     InfoCollegienComponent,
+    AccueilUserComponent,
   ],
   entryComponents: [
      DialogBoxComponent,

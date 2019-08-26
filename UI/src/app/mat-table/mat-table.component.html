@@ -21,12 +21,12 @@
 
         <ng-container matColumnDef="h_Arr">
             <mat-header-cell class="colorHeader" *matHeaderCellDef mat-sort-header>Heure d'arrivée : </mat-header-cell>
-            <mat-cell *matCellDef="let collegien">{{collegien.h_Arr |  date :'dd/MM/yyyy'}}</mat-cell>
+            <mat-cell *matCellDef="let collegien">{{collegien.date.h_Arr |  date :'dd/MM/yyyy'}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="h_Dep">
             <mat-header-cell class="colorHeader" *matHeaderCellDef mat-sort-header>Heure de Départ : </mat-header-cell>
-            <mat-cell *matCellDef="let collegien">{{collegien.h_Dep |  date :'dd/MM/yyyy'}}</mat-cell>
+            <mat-cell *matCellDef="let collegien">{{collegien.date.h_Dep |  date :'dd/MM/yyyy'}}</mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

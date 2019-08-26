@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { AuthenticationService } from '../service/authentication.service';
+import { AuthenticationService, UserDetails } from '../service/authentication.service';
 
 @Component({
   selector: 'collegien-main-nav',
@@ -24,6 +24,11 @@ export class MainNavComponent implements OnInit {
       map(result => result.matches),
     );
 
+  // Détails sur les infos dans le token
+  public details: UserDetails;
+
+  public admin = false;
+
 
   //--------------------------------------------------------------------------------
   //-----------------------Constructeur + Injection de dépendances------------------
@@ -40,13 +45,23 @@ export class MainNavComponent implements OnInit {
   //------------------------------------------------------------------------------
 
   ngOnInit() {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
+    this.auth.profile().subscribe(user => {
+      this.details = user
+      this.handleSucess(user)
+    }, (err) => {
+      console.error('ERROR', err);
+    });
   }
+
 
   //------------------------------------------------------------------------
   //-----------------------Methodes-----------------------------------------
   //------------------------------------------------------------------------
+
+  handleSucess(res){
+    if(this.details.nomRole === 'admin')
+    this.admin = true;
+  } 
   /**
    * Suppression de tous les composants
    */

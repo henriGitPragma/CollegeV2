@@ -1,71 +1,85 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-  [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
 
-  <mat-toolbar class="header">
-    LOGO
-  </mat-toolbar>
+    <mat-sidenav-container *ngIf="admin === true; else user" class="sidenav-container">
+        <mat-sidenav #drawer fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+          [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    
+          <mat-toolbar class="header">
+            LOGO
+          </mat-toolbar>
+    
+          <mat-nav-list class="menu">
+    
+            <div *ngIf="horaireComponent === true">
+              <collegien-horaire></collegien-horaire>
+            </div>
+    
+            <div *ngIf="listNomPrenomComponent === true">
+              <collegien-list-nom-prenom></collegien-list-nom-prenom>
+            </div>
+    
+            <div *ngIf="presenceComponent === true">
+              <collegien-presence></collegien-presence>
+            </div>
+    
+          </mat-nav-list>
+    
+        </mat-sidenav>
+    
+    
+        <mat-sidenav-content>
+          <mat-toolbar class="header">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+              *ngIf="isHandset$ | async">
+              <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+    
+            <button id="visuel" [routerLink]="['/dashboard']" mat-icon-button type="button" (click)="btnVisuelFunction()">
+              <mat-icon>apps</mat-icon>
+            </button>
+    
+            
+            <button id="supervisor" [routerLink]="['/infoCollegien']" type="button" mat-icon-button
+              (click)="btnInfoCollegienFunction()">
+              <mat-icon>supervisor_account</mat-icon>
+            </button>
+    
+            <button id="presence" [routerLink]="['/presence']" type="button" mat-icon-button
+              (click)="btnInfoPresenceFunction()">
+              <mat-icon>where_to_vote</mat-icon>
+            </button>
+            <button id="presence" [routerLink]="['/updateCSV']" type="button" mat-icon-button>
+              <mat-icon>home</mat-icon>
+            </button>
+    
+            <div class="displayAferRight" [routerLink]="['/profile']">
+              {{ auth.getUserDetails()?.nomEleve | uppercase }} {{ auth.getUserDetails()?.prenomEleve | titlecase }}
+            </div>
+    
+            <div class="displayRight">
+              <div *ngIf="!auth.isLoggedIn()" routerLink="/">
+                <button type="button" mat-icon-button>
+                  <mat-icon>lock</mat-icon>
+                </button>
+              </div>
+              <div *ngIf="auth.isLoggedIn()" (click)="auth.logout()">
+                <button type="button" mat-icon-button>
+                  <mat-icon>lock_open</mat-icon>
+                </button>
+              </div>
+            </div>
+    
+    
+          </mat-toolbar>
+    
+          <router-outlet></router-outlet>
+          
+        </mat-sidenav-content>
+      </mat-sidenav-container>
 
-  <mat-nav-list class="menu">
+ 
 
-    <div *ngIf="horaireComponent === true">
-      <collegien-horaire></collegien-horaire>
-    </div>
+<ng-template #user>
+  <collegien-accueil-user></collegien-accueil-user>
+</ng-template>
 
-    <div *ngIf="listNomPrenomComponent === true" >
-          <collegien-list-nom-prenom></collegien-list-nom-prenom>
-    </div>
-
-    <div *ngIf="presenceComponent === true" >
-        <collegien-presence></collegien-presence>
-  </div>
-
-  </mat-nav-list>
-
-</mat-sidenav>
-
-
-  <mat-sidenav-content>
-    <mat-toolbar class="header">
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-
-      <button id="visuel" [routerLink]="['/dashboard']" mat-icon-button
-       type="button"
-        (click)="btnVisuelFunction()">
-        <mat-icon >apps</mat-icon>
-      </button>
-
-      <button id="supervisor" [routerLink]="['/infoCollegien']" type="button" mat-icon-button (click)="btnInfoCollegienFunction()">
-        <mat-icon>supervisor_account</mat-icon>
-      </button>
-
-      <button id="presence" [routerLink]="['/presence']" type="button" mat-icon-button (click)="btnInfoPresenceFunction()">
-        <mat-icon>where_to_vote</mat-icon>
-      </button>
-
-      <div class="displayAferRight" [routerLink]="['/profile']">
-        {{ auth.getUserDetails()?.nomEleve | uppercase }}   {{ auth.getUserDetails()?.prenomEleve | titlecase }} 
-    </div>
-
-    <div class="displayRight" >
-      <div *ngIf="!auth.isLoggedIn()" routerLink="/">
-        <button type="button" mat-icon-button>
-            <mat-icon>lock</mat-icon>
-          </button> 
-      </div>
-      <div *ngIf="auth.isLoggedIn()" (click)="auth.logout()">
-          <button type="button" mat-icon-button>
-              <mat-icon>lock_open</mat-icon>
-            </button> 
-      </div>
-     </div>
-
-
-    </mat-toolbar>
-
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+ 

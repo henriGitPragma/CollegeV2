@@ -77,9 +77,9 @@ async function collegienSave(req) {
 // ***********************PENSER A DECOMMENTER POUR CRYPTER LES MDP************************************
 // ****************************************************************************************************
 
-  console.log('new collegien créée ', collegien.password)
+ /*  console.log('new collegien créée ', collegien.password)
   collegien.setPassword(req.password);
-  console.log('password crypter ok?? ', collegien)
+  console.log('password crypter ok?? ', collegien) */
 
 // ****************************************************************************************************
 // ****************************************************************************************************
@@ -130,9 +130,16 @@ function collegienFindAllCritere(queryparams) {
   // eslint-disable-next-line prefer-template
   const regexPrenom = new RegExp('^' + criterePrenom, 'i');
 
+  
+   // nomParent
+   const critereNomParent = queryparams.nomParent;
+   // eslint-disable-next-line prefer-template
+   const regexNomParent = new RegExp('^' + critereNomParent, 'i');
+
   return Collegien.find({
     nomEleve: regexNom,
     prenomEleve: regexPrenom,
+    nomParent:regexNomParent,
   }).select(queryparams.columnsOnly).sort({ nomEleve: 1 });
 }
 

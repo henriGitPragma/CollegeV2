@@ -8,8 +8,10 @@ export interface Collegien {
     email?: string;
     classeEleve?: string;
     regimeEleve?: string;
-    h_Arr?: Date; // On identitque l'heure de l'enregistrement
-    h_Dep?: Date;// On identitque l'heure de l'enregistrement
+    date?:[{
+        h_Arr?: Date; // On identitque l'heure de l'enregistrement
+        h_Dep?: Date;// On identitque l'heure de l'enregistrement
+    }];
     nomParent?: string;
     prenomParent?: string;
     qualiteParent?: string;

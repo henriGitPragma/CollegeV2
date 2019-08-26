@@ -42,8 +42,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private auth: AuthenticationService, 
-    private collegeService: CollegeService,
-    private router: Router,
     private authService: AuthService
     ) { }
 
@@ -76,7 +74,6 @@ export class LoginComponent implements OnInit {
       }, (err) => {
         console.error('ERROR', err);
       });
-      this.router.navigateByUrl('/meteoles');
     }, (err) => {
       this.echec = 'ECHEC';
     });
@@ -96,7 +93,7 @@ export class LoginComponent implements OnInit {
         this.eolien = { email: userData.email };
         // On fait une recherche sur le mail de google pour recupéré la personne
         console.log('emailGoogle', userData.email);
-        this.auth.googleAuth(userData.email).subscribe(res => console.log('eeeeeeeeeeee', res))
+        this.auth.googleAuth(userData.email).subscribe(res => console.log('OK', res))
       }
     );
   }

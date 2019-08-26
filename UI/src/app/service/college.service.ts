@@ -70,6 +70,7 @@ export class CollegeService {
       nomEleve: collegien.nomEleve || '',
       prenomEleve: collegien.prenomEleve || '',
       email: collegien.email || '',
+      nomParent: collegien.nomParent || '',
       columnsOnly,
     };
     console.log('params', params);

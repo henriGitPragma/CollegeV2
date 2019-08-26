@@ -1,3 +1,4 @@
+import { AccueilUserComponent } from './accueil-user/accueil-user.component';
 import { PresenceComponent } from './presence/presence.component';
 import { InfoCollegienComponent } from './info-collegien/info-collegien.component';
 import { EnfantCreateComponent } from './enfant-create/enfant-create.component';
@@ -21,8 +22,10 @@ const routes: Routes = [
   // Routes d'autehntification
   { path: '', component: LoginComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
+  
 
   // Home page
+  { path: 'accueilUser', component: AccueilUserComponent, canActivate: [AuthGuardService] },
   { path: 'home', component: HomePageComponent, canActivate: [AuthGuardService] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService] },
   { path: 'infoCollegien', component: InfoCollegienComponent, canActivate: [AuthGuardService] },

@@ -70,7 +70,7 @@ export class UpdateFileCSVComponent implements OnInit {
       this.response.emit({ type: 'success', data: [] });
     }
 
-    this.router.navigate(['/global']);
+    this.router.navigate(['/']);
   }
 
   /**

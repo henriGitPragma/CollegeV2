@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CollegeService } from '../service/college.service';
 import { Collegien } from '../models/collegien';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { AuthenticationService, UserDetails } from '../service/authentication.service';
 
 @Component({
   selector: 'collegien-list-nom-prenom',
@@ -18,13 +19,17 @@ export class ListNomPrenomComponent implements OnInit {
   public collegien: Collegien = {};
   public dataSource: Collegien[] = [];
 
+    // Détails de l'utilisateur connecté
+    details: UserDetails;
+
 
   //--------------------------------------------------------------------------------
   //-----------------------Constructeur + Injection de dépendances------------------
   //--------------------------------------------------------------------------------
 
   constructor(
-    private collegeService: CollegeService
+    private collegeService: CollegeService,
+    private auth: AuthenticationService, 
   ) { }
 
 
@@ -33,7 +38,12 @@ export class ListNomPrenomComponent implements OnInit {
   //------------------------------------------------------------------------------
 
   ngOnInit() {
-    this.displayCollumns();
+    this.auth.profile().subscribe(user => {
+      this.details = user;
+      this.displayCollumns();
+    }, (err) => {
+      console.error('ERROR', err);
+    });
   }
 
   //------------------------------------------------------------------------
@@ -43,8 +53,17 @@ export class ListNomPrenomComponent implements OnInit {
    * Recherche de tous les collégiens - On récupere uniquement le nom et le prenom
    */
   displayCollumns() {
-    this.collegeService.
-      getAllCollegienCritere(this.collegien, ['nomEleve', 'prenomEleve']).subscribe(res => this.dataSource = res)
+    if(this.details.nomRole === 'user') {
+      console.log('pipoooooooooooooooooooooo', this.details.nomEleve)
+      this.collegien = {nomParent: this.details.nomEleve}
+      this.collegeService.
+      getAllCollegienCritere(this.collegien, ['nomEleve', 'prenomEleve', 'classeEleve'])
+      .subscribe(res => this.dataSource = res)
+    } else {
+      this.collegeService.
+      getAllCollegienCritere(this.collegien, ['nomEleve', 'prenomEleve'])
+      .subscribe(res => this.dataSource = res)
+    }
   }
 
   //------------------------------------------------------------------------

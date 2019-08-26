@@ -25,7 +25,7 @@ export class AuthGuardService implements CanActivate {
    */
   canActivate() {
     if (!this.auth.isLoggedIn()) {
-      this.router.navigateByUrl('/updateCSV');
+      this.router.navigateByUrl('/');
       return false;
     }
     return true;
